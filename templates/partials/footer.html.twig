@@ -1,0 +1,101 @@
+
+    <link rel="shortcut icon" href="https://htmlstream.com/preview/front-v1.3/favicon.ico">
+    <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/animate.css/animate.min.css">
+    <link rel="stylesheet" href="{{ asset('') }}assets/home/css/front.css">
+
+
+    <div class="fd-example pt-7">
+        <!-- ========== FOOTER ========== -->
+        <footer class="position-relative bg-primary text-center">
+            <div class="container-fluid">
+                <!-- Copyright -->
+                <div class="u-space-1">
+                    <p class="small u-text-light mb-0">&copy; Front. 2018 Htmlstream. All rights reserved.</p>
+                </div>
+                <!-- End Copyright -->
+
+                <!-- Go To Top -->
+                <div class="text-center mx-auto">
+                    <a class="js-go-to" href="javascript:;"
+                       data-type="absolute"
+                       data-position='{
+                       "bottom": 56
+                     }'
+                       data-compensation="#header"
+                       data-show-effect="slideInUp"
+                       data-hide-effect="slideOutDown">
+
+                        <div class="u-go-to-wave">
+                            <!-- SVG Wave Shape -->
+                            <figure>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 208 44" style="enable-background:new 0 0 208 44;" xml:space="preserve">
+                          <path class="u-fill-primary" d="M0,43c0,0,22.9,2.2,54-18.7S95.1,1.5,95.1,1.5s11.2-3.5,20.1,0.1s10.4,3.7,19.2,9.3c7.7,4.8,15,10.1,22.8,14.9
+                            c10.1,6.2,21.5,11.7,33,14.8C191.6,41,208,44,208,43c0,0,0,1,0,1H0V43z"/>
+                        </svg>
+                            </figure>
+                            <!-- End SVG Wave Shape -->
+
+                            <span class="fas fa-angle-double-up"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- End Go To Top -->
+        </footer>
+        <!-- ========== END FOOTER ========== -->
+    </div>
+
+
+
+    <!-- Go to Top -->
+    <a class="js-go-to u-go-to" href="javascript:;"
+       data-position='{"bottom": 15, "right": 15 }'
+       data-type="fixed"
+       data-offset-top="400"
+       data-compensation="#header"
+       data-show-effect="slideInUp"
+       data-hide-effect="slideOutDown">
+        <span class="fa fa-arrow-up u-go-to__inner"></span>
+    </a>
+    <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="{{ asset('') }}assets/home/js/hs.core.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.header.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.unfold.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.go-to.js"></script>
+
+    <!-- JS Plugins Init. -->
+    <script>
+        $(document).on('ready', function () {
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#header'));
+
+            // initialization of unfold component
+            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+            // initialization of go to
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+        });
+
+        $(window).on('load', function () {
+            // initialization of HSMegaMenu component
+            $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 767,
+                hideTimeOut: 0
+            });
+
+            // initialization of autocomplet
+            $.HSCore.components.HSLocalSearchAutocomplete.init('#fd-sidebar-navigation__search-autocomplete');
+
+            // initialization of HSScrollNav component
+            $.HSCore.components.HSScrollNav.init($('#scrollNav'), {
+                duration: 700
+            });
+        });
+    </script>

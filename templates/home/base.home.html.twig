@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% trans_default_domain 'homepage' %}
+
+    {% block head %}{% endblock %}
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="{{ asset('assets/home/img/brand/icon.png') }}" rel="icon" type="image/png">
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/font-awesome/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/custombox/dist/custombox.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/animate.css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/hs-megamenu/src/hs.megamenu.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/flatpickr/dist/flatpickr.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/css/front.css') }}">
+    {% endblock %}
+
+    <style>
+        .svg-inline--fa{
+            /*width:10px!important;*/
+            /*height: 10px!important;*/
+            /*margin-top: -10px!important;*/
+        }
+        .custom-ul-set li a{
+            /*margin-top: ;*/
+        }
+    </style>
+
+</head>
+
+<body>
+
+{{ render(controller(
+    'App\\Controller\\home\\HomeController::menu'
+)) }}
+
+{% block content %}{% endblock %}
+
+{#
+<!-- Go to Top -->
+<a class="js-go-to u-go-to" href="javascript:;"
+   data-position='{"bottom": 15, "right": 15 }'
+   data-type="fixed"
+   data-offset-top="400"
+   data-compensation="#header"
+   data-show-effect="slideInUp"
+   data-hide-effect="slideOutDown">
+    <span class="fa fa-arrow-up u-go-to__inner"></span>
+</a>
+<!-- End Go to Top -->
+
+<!-- Go to Top -->
+<a class="js-go-to u-go-to" href="#"
+   data-position='{"bottom": 15, "right": 15 }'
+   data-type="fixed"
+   data-offset-top="400"
+   data-compensation="#header"
+   data-show-effect="slideInUp"
+   data-hide-effect="slideOutDown">
+    <span class="fa fa-arrow-up u-go-to__inner"></span>
+</a>
+<!-- End Go to Top -->#}
+
+
+{% block javascripts %}
+
+{% endblock %}
+
+<!-- JS Plugins Init. -->
+<!-- JS Plugins Init. -->
+
+
+
+<script>
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#header'));
+
+        // initialization of unfold component
+        $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+
+    $(window).on('load', function () {
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 767,
+            hideTimeOut: 0
+        });
+
+        // initialization of autocomplet
+        $.HSCore.components.HSLocalSearchAutocomplete.init('#fd-sidebar-navigation__search-autocomplete');
+
+        // initialization of HSScrollNav component
+        $.HSCore.components.HSScrollNav.init($('#scrollNav'), {
+            duration: 700
+        });
+    });
+</script>
+
+
+<script>
+    $(window).on('load', function () {
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 767,
+            hideTimeOut: 0
+        });
+
+        // initialization of HSScrollNav component
+        $.HSCore.components.HSScrollNav.init($('#scrollNav'), {
+            duration: 700
+        });
+    });
+
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#header'));
+
+        // initialization of unfold component
+        $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of malihu scrollbar
+        $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+        // initialization of show animations
+        $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+        // initialization of form validation
+        $.HSCore.components.HSValidation.init('.js-validate', {
+            rules: {
+                confirmPassword: {
+                    equalTo: '#password'
+                }
+            }
+        });
+
+        // initialization of forms
+        $.HSCore.helpers.HSFocusState.init();
+
+        // initialization of sticky blocks
+        setTimeout(function () {
+            $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+        }, 300);
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+</script>
+
+</body>
+</html>

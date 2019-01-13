@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="V37VaL4" resname="home.title.description">
+        <source>home.title.description</source>
+        <target>Pay and get Paid worldwide without barriers</target>
+      </trans-unit>
+      <trans-unit id="z56nCWU" resname="home.title.home">
+        <source>home.title.home</source>
+        <target>BaxPay - Pay and get Paid worldwide without barriers</target>
+      </trans-unit>
+      <trans-unit id="NUPU_KS" resname="home.title.terms">
+        <source>home.title.terms</source>
+        <target>BaxPay - Terms of use</target>
+      </trans-unit>
+      <trans-unit id="PxQUl.c" resname="home.title.privacy">
+        <source>home.title.privacy</source>
+        <target>BaxPay - Privacy Policy</target>
+      </trans-unit>
+      <trans-unit id="ZxiiOXh" resname="home.title.help">
+        <source>home.title.help</source>
+        <target>BaxPay - help and support</target>
+      </trans-unit>
+      <trans-unit id="5RS1uqG" resname="home.title.register">
+        <source>home.title.register</source>
+        <target>BaxPay - create an account</target>
+      </trans-unit>
+      <trans-unit id="RzPQoTW" resname="home.title.login">
+        <source>home.title.login</source>
+        <target>BaxPay - Login</target>
+      </trans-unit>
+      <trans-unit id="nnYJigu" resname="home.title.recover">
+        <source>home.title.recover</source>
+        <target>BaxPay - recover password</target>
+      </trans-unit>
+      <trans-unit id="VYoPjpc" resname="home.title.password">
+        <source>home.title.password</source>
+        <target>BaxPay - reset password</target>
+      </trans-unit>
+      <trans-unit id="PsPw6.I" resname="home.title.activate">
+        <source>home.title.activate</source>
+        <target>BaxPay - activate your account</target>
+      </trans-unit>
+      <trans-unit id="m_ocOzY" resname="home.header.dashboard">
+        <source>home.header.dashboard</source>
+        <target>My account</target>
+      </trans-unit>
+      <trans-unit id="QYE1NK6" resname="home.header.login">
+        <source>home.header.login</source>
+        <target>Login / Register</target>
+      </trans-unit>
+      <trans-unit id="JFr7frp" resname="home.header.copyright">
+        <source>home.header.copyright</source>
+        <target>© 2019 BaxPay - All rights reserved.</target>
+      </trans-unit>
+      <trans-unit id="kmRhyIU" resname="home.header.developer">
+        <source>home.header.developer</source>
+        <target>Offered by Angopapo.</target>
+      </trans-unit>
+      <trans-unit id="bbfp848" resname="home.footer.help">
+        <source>home.footer.help</source>
+        <target>Help</target>
+      </trans-unit>
+      <trans-unit id="lpOvt69" resname="home.footer.terms">
+        <source>home.footer.terms</source>
+        <target>Terms</target>
+      </trans-unit>
+      <trans-unit id="xv5zqnF" resname="home.footer.privacy">
+        <source>home.footer.privacy</source>
+        <target>Privacy</target>
+      </trans-unit>
+      <trans-unit id="XF7XyE_" resname="home.footer.dlonthe">
+        <source>home.footer.dlonthe</source>
+        <target>Download on the</target>
+      </trans-unit>
+      <trans-unit id="4tgU5wC" resname="home.footer.appstore">
+        <source>home.footer.appstore</source>
+        <target>App Store</target>
+      </trans-unit>
+      <trans-unit id="8al7kd4" resname="home.footer.getiton">
+        <source>home.footer.getiton</source>
+        <target>Get it on</target>
+      </trans-unit>
+      <trans-unit id="mqgQFvN" resname="home.footer.ggplay">
+        <source>home.footer.ggplay</source>
+        <target>Google Play</target>
+      </trans-unit>
+      <trans-unit id="CV1Bamv" resname="home.auth.login.title">
+        <source>home.auth.login.title</source>
+        <target>Welcome Back</target>
+      </trans-unit>
+      <trans-unit id="ImNjhU0" resname="home.auth.login.description">
+        <source>home.auth.login.description</source>
+        <target>Login to manage your account.</target>
+      </trans-unit>
+      <trans-unit id="JX0gkVR" resname="home.auth.login.email">
+        <source>home.auth.login.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="xVYCaBO" resname="home.auth.login.password">
+        <source>home.auth.login.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="SzZudtq" resname="home.auth.login.remember">
+        <source>home.auth.login.remember</source>
+        <target>Remember me</target>
+      </trans-unit>
+      <trans-unit id="0YrxIWz" resname="home.auth.login.submit">
+        <source>home.auth.login.submit</source>
+        <target>Log In</target>
+      </trans-unit>
+      <trans-unit id="TZV3XmZ" resname="home.auth.login.noaccount">
+        <source>home.auth.login.noaccount</source>
+        <target>Don't have an account?</target>
+      </trans-unit>
+      <trans-unit id="3b_ZlV2" resname="home.auth.login.signup">
+        <source>home.auth.login.signup</source>
+        <target>Create account</target>
+      </trans-unit>
+      <trans-unit id="g6mVOjW" resname="home.auth.login.forgot">
+        <source>home.auth.login.forgot</source>
+        <target>Forgot a password ?</target>
+      </trans-unit>
+      <trans-unit id="e1tFVF4" resname="home.auth.login.recover">
+        <source>home.auth.login.recover</source>
+        <target>Recover</target>
+      </trans-unit>
+      <trans-unit id="VItWsJd" resname="home.auth.register.title">
+        <source>home.auth.register.title</source>
+        <target>Welcome to BaxPay</target>
+      </trans-unit>
+      <trans-unit id="A7O6._c" resname="home.auth.register.description">
+        <source>home.auth.register.description</source>
+        <target>Fill out the form to get started.</target>
+      </trans-unit>
+      <trans-unit id="BFgkxeX" resname="home.auth.register.firstname">
+        <source>home.auth.register.firstname</source>
+        <target>First Name</target>
+      </trans-unit>
+      <trans-unit id="6P4cNOX" resname="home.auth.register.lastname">
+        <source>home.auth.register.lastname</source>
+        <target>Last Name</target>
+      </trans-unit>
+      <trans-unit id="amSbzKp" resname="home.auth.register.email">
+        <source>home.auth.register.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="CSy_Lz8" resname="home.auth.register.phonenumber">
+        <source>home.auth.register.phonenumber</source>
+        <target>Phone number</target>
+      </trans-unit>
+      <trans-unit id="HbefQLU" resname="home.auth.register.male">
+        <source>home.auth.register.male</source>
+        <target>Male</target>
+      </trans-unit>
+      <trans-unit id="F02fQlC" resname="home.auth.register.female">
+        <source>home.auth.register.female</source>
+        <target>Female</target>
+      </trans-unit>
+      <trans-unit id="lkWalWY" resname="home.auth.register.personal">
+        <source>home.auth.register.personal</source>
+        <target>Personal</target>
+      </trans-unit>
+      <trans-unit id="IJrSeQX" resname="home.auth.register.company">
+        <source>home.auth.register.company</source>
+        <target>Business</target>
+      </trans-unit>
+      <trans-unit id="MEflRFD" resname="home.auth.register.password">
+        <source>home.auth.register.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="dOIL4ne" resname="home.auth.register.passwordagain">
+        <source>home.auth.register.passwordagain</source>
+        <target>Re-enter password</target>
+      </trans-unit>
+      <trans-unit id="R7EPTP6" resname="home.auth.register.agree">
+        <source>home.auth.register.agree</source>
+        <target>I agree with </target>
+      </trans-unit>
+      <trans-unit id="1z92Qir" resname="home.auth.register.terms">
+        <source>home.auth.register.terms</source>
+        <target>Terms and conditions</target>
+      </trans-unit>
+      <trans-unit id="NNEaMoi" resname="home.auth.register.signup">
+        <source>home.auth.register.signup</source>
+        <target>Create account</target>
+      </trans-unit>
+      <trans-unit id="DkgP1Ww" resname="home.auth.register.haveaccount">
+        <source>home.auth.register.haveaccount</source>
+        <target>Already have an account?</target>
+      </trans-unit>
+      <trans-unit id="9PRYMUi" resname="home.auth.register.signin">
+        <source>home.auth.register.signin</source>
+        <target>Log In</target>
+      </trans-unit>
+      <trans-unit id="ZY77WLm" resname="home.auth.register.privacy">
+        <source>home.auth.register.privacy</source>
+        <target>Privacy Policy.</target>
+      </trans-unit>
+      <trans-unit id="vSwQU4h" resname="home.auth.forgot.title">
+        <source>home.auth.forgot.title</source>
+        <target>Recover Your Password</target>
+      </trans-unit>
+      <trans-unit id="rB3EwOY" resname="home.auth.forgot.description">
+        <source>home.auth.forgot.description</source>
+        <target>Enter your email address to start recovery process</target>
+      </trans-unit>
+      <trans-unit id="kpqpuGw" resname="home.auth.forgot.email">
+        <source>home.auth.forgot.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="DzMLHxX" resname="home.auth.forgot.placeorder">
+        <source>home.auth.forgot.placeorder</source>
+        <target>yourname@domain.com</target>
+      </trans-unit>
+      <trans-unit id="V68mn5F" resname="home.auth.forgot.submit">
+        <source>home.auth.forgot.submit</source>
+        <target>Request new password</target>
+      </trans-unit>
+      <trans-unit id="cx6sDJ7" resname="home.auth.reset.title">
+        <source>home.auth.reset.title</source>
+        <target>Create new password</target>
+      </trans-unit>
+      <trans-unit id="wxZXFTE" resname="home.auth.reset.description">
+        <source>home.auth.reset.description</source>
+        <target>Please create a secure password</target>
+      </trans-unit>
+      <trans-unit id="Ex0ymQy" resname="home.auth.reset.password">
+        <source>home.auth.reset.password</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="9aX4_U3" resname="home.auth.reset.passwordagain">
+        <source>home.auth.reset.passwordagain</source>
+        <target>Re-enter new password</target>
+      </trans-unit>
+      <trans-unit id="nTPbEkh" resname="home.auth.reset.submit">
+        <source>home.auth.reset.submit</source>
+        <target>Change password</target>
+      </trans-unit>
+      <trans-unit id="XgBaVld" resname="home.auth.activate.title">
+        <source>home.auth.activate.title</source>
+        <target>Confirm your identity!</target>
+      </trans-unit>
+      <trans-unit id="qyNT.ZE" resname="home.auth.activate.description">
+        <source>home.auth.activate.description</source>
+        <target>Re-enter your email and verification code send to you! by phone or email.</target>
+      </trans-unit>
+      <trans-unit id="NYS.HLx" resname="home.auth.activate.email">
+        <source>home.auth.activate.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="A6HzGzr" resname="home.auth.activate.placeorder">
+        <source>home.auth.activate.placeorder</source>
+        <target>yourname@domain.com</target>
+      </trans-unit>
+      <trans-unit id="cfKpny7" resname="home.auth.activate.code">
+        <source>home.auth.activate.code</source>
+        <target>Verification code</target>
+      </trans-unit>
+      <trans-unit id="5vSXfjL" resname="home.auth.activate.pinorder">
+        <source>home.auth.activate.pinorder</source>
+        <target>6 digits</target>
+      </trans-unit>
+      <trans-unit id="YbUa2w8" resname="home.auth.activate.submit">
+        <source>home.auth.activate.submit</source>
+        <target>Verify</target>
+      </trans-unit>
+      <trans-unit id="dtSsGCg" resname="home.auth.active.title">
+        <source>home.auth.active.title</source>
+        <target>Activate your account</target>
+      </trans-unit>
+      <trans-unit id="EWp4xYP" resname="home.auth.active.description">
+        <source>home.auth.active.description</source>
+        <target>You can resend the code by clicking in buttons below.</target>
+      </trans-unit>
+      <trans-unit id="6azxHHM" resname="home.auth.active.code">
+        <source>home.auth.active.code</source>
+        <target>Verification code</target>
+      </trans-unit>
+      <trans-unit id="0U9Xot3" resname="home.auth.active.late">
+        <source>home.auth.active.late</source>
+        <target>Didn't receive any code ?</target>
+      </trans-unit>
+      <trans-unit id="ebbmytO" resname="home.auth.active.sendemail">
+        <source>home.auth.active.sendemail</source>
+        <target>Resend to email</target>
+      </trans-unit>
+      <trans-unit id="Q7XnkTM" resname="home.auth.active.sendphone">
+        <source>home.auth.active.sendphone</source>
+        <target>Resend to phone</target>
+      </trans-unit>
+      <trans-unit id="y7JLjOR" resname="home.auth.active.pinorder">
+        <source>home.auth.active.pinorder</source>
+        <target>6 digits</target>
+      </trans-unit>
+      <trans-unit id="iSI2Wz1" resname="home.auth.active.submit">
+        <source>home.auth.active.submit</source>
+        <target>Activate</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

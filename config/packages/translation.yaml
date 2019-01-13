@@ -1,0 +1,16 @@
+parameters:
+   app_locales: en|fr|pt
+
+#parameters:
+#    locale: en
+#    locales: en|fr|es|de
+
+framework:
+    #default_locale: '%locale%'
+    default_locale: 'en'
+    translator:
+        paths:
+            - '%kernel.project_dir%/translations'
+        fallbacks:
+            ['en', 'pt', 'fr']
+            #- '%locale%'
