@@ -1,0 +1,82 @@
+{#{% trans_default_domain 'FOSUserBundle' %}#}
+
+{% trans_default_domain 'homepage' %}
+
+
+{% block head %}
+    <title>{% block title %}{{ 'home.title.login'|trans }}{% endblock %}</title>
+{% endblock %}
+
+<main class="container-fluid w-100" role="main">
+    <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center bg-white mnh-100vh">
+            <a class="u-login-form py-3 mb-auto" href="/">
+                <img class="img-fluid" src="{{ asset('assets/front/') }}img/logo.png" width="70" alt="{{ 'home.title.home'|trans }}">
+            </a>
+           {# <div class="u-login-form" style="height: 130px; padding-top: 7px;">
+                <img class="img-fluid" src="{{ asset('assets/front/') }}img/logo.png" width="70" alt="Stream Dashboard UI Kit">
+            </div>#}
+            <div class="u-login-form" style="padding-bottom: 20%">
+                <form class="mb-3" action="{{ path("fos_user_security_check") }}" method="post">
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {% endif %}
+                    <div class="mb-3">
+                        <h1 class="h2">{{ 'home.auth.login.title'|trans }}</h1>
+                        <p class="small">{{ 'home.auth.login.description'|trans }}</p>
+                    </div>
+
+                    {% if error %}
+                        <p class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                    {% endif %}
+                    <div class="form-group mb-3">
+                        {#<label for="username">{{ 'security.login.username'|trans }}</label>#}
+                        {#<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />#}
+
+                        <label for="username">{{ 'home.auth.login.email'|trans }}</label>
+                        <input id="username" required class="form-control" value="{{ last_username }}" name="_username" type="email" placeholder="">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">{{ 'home.auth.login.password'|trans }}</label>
+                        <input id="password" required class="form-control" autocomplete="current-password" name="_password" type="password" placeholder="">
+                    </div>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input id="remember_me" class="custom-control-input" value="on" name="_remember_me" type="checkbox">
+                        <label class="d-block custom-control-label" for="remember_me">{{ 'home.auth.login.remember'|trans }}</label>
+                    </div>
+                    <button class="btn btn-primary btn-block submit-btn" id="_submit" name="_submit" type="submit">{{ 'home.auth.login.submit'|trans }}</button>
+                </form>
+
+                <p class="small">
+                    {{ 'home.auth.login.noaccount'|trans }} <a href="{{ path('fos_user_registration_register') }}">{{ 'home.auth.login.signup'|trans }}</a><br>
+                    {{ 'home.auth.login.forgot'|trans }} <a href="{{ path('forget_password') }}">{{ 'home.auth.login.recover'|trans }}</a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center bg-white">
+            <iframe src="{{ path('slider') }}" scrolling="no" frameborder="0" style="width: 100%; height: 100%"></iframe>
+        </div>
+    </div>
+
+</main>
+
+
+
+{#<form action="{{ path("fos_user_security_check") }}" method="post">#}
+    {#{% if csrf_token %}#}
+        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />#}
+    {#{% endif %}#}
+
+    {#<label for="username">{{ 'security.login.username'|trans }}</label>#}
+    {#<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />#}
+
+    {#<label for="password">{{ 'security.login.password'|trans }}</label>#}
+    {#<input type="password" id="password" name="_password" required="required" autocomplete="current-password" />#}
+
+    {#<input type="checkbox" id="remember_me" name="_remember_me" value="on" />#}
+    {#<label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>#}
+
+    {#<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />#}
+{#</form>#}
