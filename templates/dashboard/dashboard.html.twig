@@ -1,0 +1,17 @@
+{% extends 'home/base.home.html.twig' %}
+
+{% trans_default_domain 'homepage' %}
+
+{% block head %}
+    <title>{% block title %}{{ 'home.title.home'|trans }}{% endblock %}</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+    {{ render(controller(
+        'App\\Controller\\home\\HomeController::dash'
+    )) }}
+
+{% endblock %}
