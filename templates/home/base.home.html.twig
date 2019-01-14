@@ -11,6 +11,7 @@
 
     <link href="{{ asset('assets/home/img/brand/icon.png') }}" rel="icon" type="image/png">
     <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/home/vendor/bootstrap/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/home/vendor/font-awesome/css/fontawesome-all.min.css') }}">
@@ -31,6 +32,9 @@
         .custom-ul-set li a{
             /*margin-top: ;*/
         }
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 
 </head>
@@ -42,6 +46,17 @@
 )) }}
 
 {% block content %}{% endblock %}
+<div class="bottom-footer" style="background:;">
+    <div class="bg-img-footer" style="text-align: center; background: #f8fafd;">
+        <a href="#" class="">
+            <img data-aos="zoom-in-up" src="{{ asset('assets/home/img/brand/footer.png') }}" alt="">
+        </a>
+        {#<div style="background: transparent; text-align: center; padding-top: 30px; ">hello</div>#}
+    </div>
+    <div style="background: #377dff; width: 100%; text-align: center; color: rgba(255, 255, 255, 0.7); font-weight: 400; padding: 40px 0px; font-size: 14px;">
+        © Front. 2018 Htmlstream. All rights reserved.
+    </div>
+</div>
 
 {#
 <!-- Go to Top -->
@@ -76,7 +91,13 @@
 <!-- JS Plugins Init. -->
 <!-- JS Plugins Init. -->
 
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration:2000,
+        delay:400
+    });
+</script>
 
 <script>
     $(document).on('ready', function () {

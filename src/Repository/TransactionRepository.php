@@ -23,6 +23,23 @@ class TransactionRepository extends ServiceEntityRepository
 //      * @return Transaction[] Returns an array of Transaction objects
 //     */
 
+
+
+    public function findInReceiverAndSender($id,$currency)
+    {
+        return $this->createQueryBuilder('t')
+//            ->select('t.id as id')
+            ->andWhere('t.Receiver = :val')
+            ->orWhere('t.Sender = :val')
+            ->andWhere('t.Currency = :currency')
+            ->andWhere('t.Type <= :type')
+            ->orderBy('t.id', 'DESC')
+            ->setParameters(['val' => $id, 'currency' => $currency, 'type' => 2])
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findByReceiver($id,$currency)
     {
         return $this->createQueryBuilder('t')

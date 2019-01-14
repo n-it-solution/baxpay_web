@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% trans_default_domain 'homepage' %}
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="{{ asset('assets/home/img/brand/icon.png') }}" rel="icon" type="image/png">
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/font-awesome/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/custombox/dist/custombox.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/animate.css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/hs-megamenu/src/hs.megamenu.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/vendor/flatpickr/dist/flatpickr.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/home/css/front.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/flatpickr/dist/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
+
+    <style>
+        .svg-inline--fa{
+            /*width:10px!important;*/
+            /*height: 10px!important;*/
+            /*margin-top: -10px!important;*/
+        }
+        .custom-ul-set li a{
+            /*margin-top: ;*/
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+</head>
+
+<body>
+
+{{ render(controller(
+    'App\\Controller\\home\\HomeController::menu'
+)) }}
+
+<link rel="shortcut icon" href="">
+
+<!-- Google Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Global Compulsory -->
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/bootstrap/css/bootstrap.css">
+
+<!-- CSS Implementing Plugins -->
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.css">
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/animate.css/animate.min.css">
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.css">
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.css">
+
+<!-- CSS Front Template -->
+<link rel="stylesheet" href="{{ asset('') }}assets/home/css/front.css">
+
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+    <!-- Breadcrumb Section -->
+    <!-- End Breadcrumb Section -->
+    <div class="col-md-4 offset-4">
+        <h4 class="text-danger">{{ error }}</h4>
+        <h2 class="text-success">Make a transaction</h2>
+        <form action="" method="post">
+            <label class="label">Receiver username</label>
+            <input required type="text" class="form-control" name="sender">
+            <label class="label">Amount</label>
+            <input required type="number" class="form-control" name="amount">
+            <label class="label">Currency</label>
+            <select required class="form-control" name="currency">
+                {% for c in currency %}
+                    <option value="{{ c.id }}">{{ c.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="label">Description</label>
+            <textarea name="description" class="form-control" required></textarea>
+            <br>
+            <input type="submit" class="pull-right btn btn-primary">
+        </form>
+    </div>
+    <!-- Content Section -->
+    <div class="u-bg-light-blue-50">
+        <div class="container u-space-2">
+            <!-- Activity Menu -->
+            <div class="row justify-content-sm-between align-items-sm-center">
+                <div class="col-md-5 col-lg-4 mb-2 mb-md-0">
+                    <!-- Datepicker -->
+                    <div id="datepickerWrapper" class="u-datepicker w-auto input-group input-group-sm u-form u-form--sm">
+                        <div class="input-group-prepend u-form__prepend">
+        <span class="input-group-text u-form__text">
+          <span class="fa fa-calendar u-form__text-inner"></span>
+        </span>
+                        </div>
+                        <input class="js-range-datepicker form-control u-form__input bg-white rounded-right" type="text"
+                               data-rp-wrapper="#datepickerWrapper"
+                               data-rp-type="range"
+                               data-rp-date-format="d M Y"
+                               data-rp-default-date='["05 Jul 2018", "19 Jul 2018"]'
+                               data-rp-is-disable-future-dates="true">
+                    </div>
+                    <!-- End Datepicker -->
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex">
+                        <div class="mr-2">
+                            <!-- Select -->
+                            <select id="datatableEntries" class="js-select u-select" data-width="fit" data-style="u-btn-primary--air btn-sm">
+                                <option value="6">6 entries</option>
+                                <option value="12" selected>12 entries</option>
+                                <option value="18">18 entries</option>
+                                <option value="24">24 entries</option>
+                            </select>
+                            <!-- End Select -->
+                        </div>
+
+                        <!-- Search -->
+                        <div class="js-focus-state input-group input-group-sm u-form u-form--sm">
+                            <div class="input-group-prepend u-form__prepend">
+          <span class="input-group-text u-form__text">
+            <span class="fa fa-search u-form__text-inner"></span>
+          </span>
+                            </div>
+                            <input id="datatableSearch" class="form-control u-form__input" type="email" placeholder="Search activities" aria-label="Search activities">
+                        </div>
+                        <!-- End Search -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Activity Menu -->
+
+            <hr class="my-5">
+
+            <!-- Activity Table -->
+            <div class="table-responsive-md u-datatable">
+                <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                       data-dt-info="#datatableInfo"
+                       data-dt-search="#datatableSearch"
+                       data-dt-entries="#datatableEntries"
+                       data-dt-page-length="12"
+                       data-dt-is-responsive="false"
+                       data-dt-is-show-paging="true"
+                       data-dt-details-invoker=".js-datatabale-details"
+                       data-dt-select-all-control="#invoiceToggleAllCheckbox"
+
+                       data-dt-pagination="datatablePagination"
+                       data-dt-pagination-classes="pagination mb-0"
+                       data-dt-pagination-items-classes="page-item"
+                       data-dt-pagination-links-classes="page-link"
+
+                       data-dt-pagination-next-classes="page-item"
+                       data-dt-pagination-next-link-classes="page-link"
+                       data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+
+                       data-dt-pagination-prev-classes="page-item"
+                       data-dt-pagination-prev-link-classes="page-link"
+                       data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
+                    <thead>
+                    <tr class="text-uppercase font-size-14">
+                        <th scope="col">
+                            <div class="custom-control custom-checkbox d-flex align-items-center">
+                                <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+                                <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+                                    <span class="text-hide">Checkbox</span>
+                                </label>
+                            </div>
+                        </th>
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Order
+                                <div class="ml-2">
+                                    <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Client
+                                <div class="ml-2">
+                                    <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Amount
+                                <div class="ml-2">
+                                    <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Status
+                                <div class="ml-2">
+                                    <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="font-size-14">
+                    {% for i in transactions %}
+                    <tr class="js-datatabale-details" data-details='
+        <div class="border rounded p-5">
+          <h4 class="h3">Invoice</h4>
+
+          <div class="row mb-6">
+            <div class="col-3">
+              <span class="text-secondary">Date:</span>
+              <span class="font-weight-medium">{{ i.date }}</span>
+            </div>
+            <div class="col-3">
+              <span class="text-secondary">Merchant:</span>
+              <span class="font-weight-medium">Baxpay</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+            </div>
+
+            <div class="col-sm-6">
+              <h5 class="text-dark font-size-14 text-uppercase">Client info:</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <span class="text-secondary">First name:</span>
+                  <span class="font-weight-medium">{{ i.Receiver.firstName }}</span>
+                </li>
+                <li class="mb-2">
+                  <span class="text-secondary">Last name:</span>
+                  <span class="font-weight-medium">{{ i.Receiver.lastName }}</span>
+                </li>
+                <li class="mb-2">
+                  <span class="text-secondary">Email:</span>
+                  <span class="font-weight-medium">{{ i.Receiver.email }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row justify-content-end mb-4">
+            <div class="col-sm-6">
+              <hr class="my-4">
+
+              <h5 class="text-dark font-size-14 text-uppercase">Transaction details:</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-secondary">Transaction amount</span>
+                  <span class="font-weight-medium">{{ i.Amount }} {{ i.Currency.Name }}</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-secondary">Fee</span>
+                  <span class="font-weight-medium">$0.00</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-secondary">Total amount</span>
+                  <span class="text-primary font-weight-medium">{{ i.Amount }} {{ i.Currency.Name }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>'>
+                        <td class="align-middle">
+                            <div class="custom-control custom-checkbox d-flex align-items-center">
+                                <input type="checkbox" class="custom-control-input" id="invoiceCheckbox24">
+                                <label class="custom-control-label" for="invoiceCheckbox24">
+                                    <span class="text-hide">Checkbox</span>
+                                </label>
+                            </div>
+                        </td>
+                        <td class="align-middle text-secondary font-weight-normal u-datatable__trigger-icon">BAX{{ i.id }}</td>
+                        <td class="align-middle">
+                            <div class="media align-items-center">
+            <span class="u-icon u-icon-dark--air rounded-circle mr-2">
+              <span class="u-icon__inner font-weight-medium">B</span>
+            </span>
+                                <span>Baxpay</span>
+                            </div>
+                        </td>
+                        <td class="align-middle text-primary">{{ i.Amount }} {{ i.Currency.Name }}</td>
+                        {#<td class="align-middle text-secondary">30 Jan</td>#}
+                        <td class="align-middle text-success">Completed</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- End Activity Table -->
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-between align-items-center">
+                <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+
+                <small id="datatableInfo" class="text-secondary"></small>
+            </div>
+            <!-- End Pagination -->
+        </div>
+    </div>
+    <!-- End Content Section -->
+</main>
+<!-- ========== END MAIN ========== -->
+
+
+<!-- ========== SECONDARY CONTENTS ========== -->
+<!-- Account Sidebar Navigation -->
+<aside id="sidebarContent" class="u-sidebar u-unfold--css-animation u-unfold--hidden" aria-labelledby="sidebarNavToggler">
+    <div class="u-sidebar__scroller">
+        <div class="u-sidebar__container">
+            <div class="u-sidebar--account__footer-offset">
+                <!-- Toggle Button -->
+                <div class="d-flex justify-content-between align-items-center pt-4 px-7">
+                    <h3 class="h6 mb-0">My Account</h3>
+
+                    <button type="button" class="close ml-auto"
+                            aria-controls="sidebarContent"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-unfold-event="click"
+                            data-unfold-hide-on-scroll="false"
+                            data-unfold-target="#sidebarContent"
+                            data-unfold-type="css-animation"
+                            data-unfold-animation-in="fadeInRight"
+                            data-unfold-animation-out="fadeOutRight"
+                            data-unfold-duration="500">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- End Toggle Button -->
+
+                <!-- Content -->
+                <div class="js-scrollbar u-sidebar__body">
+                    <!-- Holder Info -->
+                    <header class="d-flex align-items-center u-sidebar--account__holder mt-3">
+                        <div class="position-relative">
+                            <img class="u-sidebar--account__holder-img" src="{{ asset('') }}assets/home/img/100x100/img3.jpg" alt="Image Description">
+                            <span class="u-badge u-badge--xs u-badge-border-success u-badge-pos rounded-circle"></span>
+                        </div>
+                        <div class="ml-3">
+                            <strong>Natalie Curtis <span class="badge u-badge-success ml-1">Pro</span></strong>
+                            <span class="u-sidebar--account__holder-text">Lead Support Adviser</span>
+                        </div>
+
+                        <!-- Settings -->
+                        <div class="btn-group position-relative ml-auto mb-auto">
+                            <a id="sidebar-account-settings-invoker" class="btn btn-xs u-btn--icon u-btn-text-secondary rounded" href="javascript:;" role="button"
+                               aria-controls="sidebar-account-settings"
+                               aria-haspopup="true"
+                               aria-expanded="false"
+                               data-toggle="dropdown"
+                               data-unfold-event="click"
+                               data-unfold-target="#sidebar-account-settings"
+                               data-unfold-type="css-animation"
+                               data-unfold-duration="300"
+                               data-unfold-delay="300"
+                               data-unfold-animation-in="slideInUp"
+                               data-unfold-animation-out="fadeOut">
+                                <span class="fa fa-ellipsis-v u-btn--icon__inner"></span>
+                            </a>
+
+                            <div id="sidebar-account-settings" class="u-unfold right-0 mt-4" aria-labelledby="sidebar-account-settings-invoker" style="min-width: 200px;">
+                                <a class="u-list__link" href="#">Edit profile</a>
+                                <a class="u-list__link" href="#">Change password</a>
+                                <a class="u-list__link" href="#">Notifications</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="u-list__link" href="#">Sign Out</a>
+                            </div>
+                        </div>
+                        <!-- End Settings -->
+                    </header>
+                    <!-- End Holder Info -->
+
+                    <div class="u-sidebar__content--account">
+                        <!-- List Links -->
+                        <ul class="list-unstyled u-sidebar--account__list">
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-home u-sidebar--account__list-icon mr-2"></span>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-user-circle u-sidebar--account__list-icon mr-2"></span>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-tasks u-sidebar--account__list-icon mr-2"></span>
+                                    My tasks
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-layer-group u-sidebar--account__list-icon mr-2"></span>
+                                    Projects <span class="badge badge-danger float-right mt-1">3</span>
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-users u-sidebar--account__list-icon mr-2"></span>
+                                    Members
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-exchange-alt u-sidebar--account__list-icon mr-2"></span>
+                                    Activity
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-wallet u-sidebar--account__list-icon mr-2"></span>
+                                    Payment methods
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-cubes u-sidebar--account__list-icon mr-2"></span>
+                                    Plans
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End List Links -->
+
+                        <div class="u-sidebar--account__list-divider"></div>
+
+                        <!-- List Links -->
+                        <ul class="list-unstyled u-sidebar--account__list">
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-user-plus u-sidebar--account__list-icon mr-2"></span>
+                                    Invite friends
+                                </a>
+                            </li>
+                            <li class="u-sidebar--account__list-item">
+                                <a class="u-sidebar--account__list-link" href="#">
+                                    <span class="fa fa-key u-sidebar--account__list-icon mr-2"></span>
+                                    API Token
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End List Links -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="u-sidebar__footer u-sidebar__footer--account">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item pr-3">
+                        <a class="u-sidebar__footer--account__text" href="https://htmlstream.com/preview/front-v1.3/html/pages/privacy.html">Privacy</a>
+                    </li>
+                    <li class="list-inline-item pr-3">
+                        <a class="u-sidebar__footer--account__text" href="https://htmlstream.com/preview/front-v1.3/html/pages/terms.html">Terms</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="u-sidebar__footer--account__text" href="https://htmlstream.com/preview/front-v1.3/html/pages/help.html">
+                            <i class="fa fa-info-circle"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- SVG Background Shape -->
+                <div class="position-absolute-bottom-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 300 126.5" style="margin-bottom: -5px; enable-background:new 0 0 300 126.5;" xml:space="preserve">
+              <path class="u-fill-primary" opacity=".6" d="M0,58.9c0-0.9,5.1-2,5.8-2.2c6-0.8,11.8,2.2,17.2,4.6c4.5,2.1,8.6,5.3,13.3,7.1C48.2,73.3,61,73.8,73,69
+                c43-16.9,40-7.9,84-2.2c44,5.7,83-31.5,143-10.1v69.8H0C0,126.5,0,59,0,58.9z"/>
+                        <path class="u-fill-primary" d="M300,68.5v58H0v-58c0,0,43-16.7,82,5.6c12.4,7.1,26.5,9.6,40.2,5.9c7.5-2.1,14.5-6.1,20.9-11
+                c6.2-4.7,12-10.4,18.8-13.8c7.3-3.8,15.6-5.2,23.6-5.2c16.1,0.1,30.7,8.2,45,16.1c13.4,7.4,28.1,12.2,43.3,11.2
+                C282.5,76.7,292.7,74.4,300,68.5z"/>
+                        <circle class="u-fill-danger" cx="259.5" cy="17" r="13"/>
+                        <circle class="u-fill-primary" cx="290" cy="35.5" r="8.5"/>
+                        <circle class="u-fill-success" cx="288" cy="5.5" r="5.5"/>
+                        <circle class="u-fill-warning" cx="232.5" cy="34" r="2"/>
+            </svg>
+                </div>
+                <!-- End SVG Background Shape -->
+            </footer>
+            <!-- End Footer -->
+        </div>
+    </div>
+</aside>
+<!-- End Account Sidebar Navigation -->
+
+
+<script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/appear.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/circles/circles.min.js"></script>
+
+<!-- JS Front -->
+<script src="{{ asset('') }}assets/home/js/hs.core.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.header.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.unfold.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.malihu-scrollbar.js"></script>
+<script src="{{ asset('') }}assets/home/js/helpers/hs.focus-state.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.validation.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.show-animation.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.range-datepicker.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.chart-pie.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.progress-bar.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.go-to.js"></script>
+<!-- JS Implementing Plugins -->
+<script src="{{ asset('') }}assets/home/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="{{ asset('') }}assets/home/js/helpers/hs.range-datepicker.js"></script>
+<script src="{{ asset('') }}assets/home/js/helpers/hs.datatables.js"></script>
+<script src="{{ asset('') }}assets/home/js/helpers/hs.selectpicker.js"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // initialization of range datepicker
+        $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+        // initialization of datatables
+        $.HSCore.components.HSDatatables.init('.js-datatable');
+
+        // initialization of select picker
+        $.HSCore.components.HSSelectPicker.init('.js-select');
+    });
+</script>
+{#
+
+    <!-- JS Global Compulsory -->
+    <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>#}{#
+
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>#}{#
+
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/bootstrap/bootstrap.min.js"></script>#}{#
+
+
+    <!-- JS Implementing Plugins -->
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.js"></script>#}{#
+
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>#}{#
+
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/jquery-validation/dist/jquery.validate.min.js"></script>#}{#
+
+    <script src="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.js"></script>
+    #}
+{#<script src="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.js"></script>#}{#
+
+    <script src="{{ asset('') }}assets/home/vendor/appear.js"></script>
+    <script src="{{ asset('') }}assets/home/vendor/circles/circles.min.js"></script>
+
+    <script src="{{ asset('') }}assets/home/js/helpers/hs.focus-state.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.validation.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.show-animation.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.range-datepicker.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.chart-pie.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.progress-bar.js"></script>
+#}
+
+<script>
+    $(window).on('load', function () {
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 767,
+            hideTimeOut: 0
+        });
+
+        // initialization of HSMegaMenu component
+        $('.js-breadcrumb-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991,
+            hideTimeOut: 0
+        });
+    });
+
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#header'));
+
+        // initialization of unfold component
+        $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of malihu scrollbar
+        $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+        // initialization of forms
+        $.HSCore.helpers.HSFocusState.init();
+
+        // initialization of form validation
+        $.HSCore.components.HSValidation.init('.js-validate');
+
+        // initialization of autonomous popups
+        $.HSCore.components.HSModalWindow.init('[data-modal-target]', '.js-request-payment-window', {
+            autonomous: true
+        });
+
+        // initialization of step form
+        $.HSCore.components.HSStepForm.init('.js-step-form');
+
+        // initialization of show animations
+        $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+        // initialization of range datepicker
+        $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+        // initialization of chart pies
+        var items = $.HSCore.components.HSChartPie.init('.js-pie');
+
+        // initialization of horizontal progress bars
+        var horizontalProgressBars = $.HSCore.components.HSProgressBar.init('.js-hr-progress', {
+            direction: 'horizontal',
+            indicatorSelector: '.js-hr-progress-bar'
+        });
+
+        var verticalProgressBars = $.HSCore.components.HSProgressBar.init('.js-vr-progress', {
+            direction: 'vertical',
+            indicatorSelector: '.js-vr-progress-bar'
+        });
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+</script>
+<div class="bottom-footer">
+    <div class="bg-img-footer" style="text-align: center; background: #f8fafd;">
+        <a href="#" class="">
+            <img data-aos="zoom-in-up" src="{{ asset('assets/home/img/brand/footer.png') }}" alt="">
+        </a>
+        {#<div style="background: transparent; text-align: center; padding-top: 30px; ">hello</div>#}
+    </div>
+    <div style="background: #377dff; width: 100%; text-align: center; color: rgba(255, 255, 255, 0.7); font-weight: 400; padding: 40px 0px; font-size: 14px;">
+        © Front. 2018 Htmlstream. All rights reserved.
+    </div>
+</div>
+
+
+<!-- JS Plugins Init. -->
+<!-- JS Plugins Init. -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration:2000,
+        delay:400
+    });
+</script>
+
+<script>
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#header'));
+
+        // initialization of unfold component
+        $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+
+    $(window).on('load', function () {
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 767,
+            hideTimeOut: 0
+        });
+
+        // initialization of autocomplet
+        $.HSCore.components.HSLocalSearchAutocomplete.init('#fd-sidebar-navigation__search-autocomplete');
+
+        // initialization of HSScrollNav component
+        $.HSCore.components.HSScrollNav.init($('#scrollNav'), {
+            duration: 700
+        });
+    });
+</script>
+
+
+<script>
+    $(window).on('load', function () {
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 767,
+            hideTimeOut: 0
+        });
+
+        // initialization of HSScrollNav component
+        $.HSCore.components.HSScrollNav.init($('#scrollNav'), {
+            duration: 700
+        });
+    });
+
+    $(document).on('ready', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#header'));
+
+        // initialization of unfold component
+        $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+            afterOpen: function () {
+                $(this).find('input[type="search"]').focus();
+            }
+        });
+
+        // initialization of malihu scrollbar
+        $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+        // initialization of show animations
+        $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+        // initialization of form validation
+        $.HSCore.components.HSValidation.init('.js-validate', {
+            rules: {
+                confirmPassword: {
+                    equalTo: '#password'
+                }
+            }
+        });
+
+        // initialization of forms
+        $.HSCore.helpers.HSFocusState.init();
+
+        // initialization of sticky blocks
+        setTimeout(function () {
+            $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+        }, 300);
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+</script>
+
+</body>
+</html>

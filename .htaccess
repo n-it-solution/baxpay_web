@@ -15,3 +15,4 @@
     RewriteRule ^(.*)$ /public/index.php [QSA,L]
     #RewriteRule ^(.*)$ /web/app_dev.php [QSA,L]
 </IfModule>
+ErrorDocument 404 /404.html

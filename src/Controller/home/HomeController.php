@@ -10,6 +10,7 @@ namespace App\Controller\home;
 
 
 
+use App\Entity\Transaction;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,9 +30,12 @@ class HomeController extends AbstractController
      */
 
     public function homepage(){
-
-        //return new Response('Bemvindo ao Baxpay');
-        return $this->render('home/homepage.html.twig');
+        if(!empty($this->getUser())){
+            return $this->render('home/homepage.html.twig');
+        }
+        else{
+            return $this->redirectToRoute('fos_user_security_login');
+        }
     }
 
     /**
@@ -56,9 +60,12 @@ class HomeController extends AbstractController
      * @Route("/dash", name="dash")
      */
     public function dash(){
-
+        $usd = $this->getDoctrine()->getRepository(Transaction::class)->findInReceiverAndSender($this->getUser()->getId(),1);
+        $eur = $this->getDoctrine()->getRepository(Transaction::class)->findInReceiverAndSender($this->getUser()->getId(),2);
+        $gbp = $this->getDoctrine()->getRepository(Transaction::class)->findInReceiverAndSender($this->getUser()->getId(),3);
+//        print_r($data);
         //return new Response('Bemvindo ao Baxpay');
-        return $this->render('partials/dashboard.html.twig');
+        return $this->render('partials/dashboard.html.twig',['usd' => $usd,'eur' => $eur, 'gbp' => $gbp]);
     }
 
     /**

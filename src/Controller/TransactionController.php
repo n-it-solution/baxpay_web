@@ -100,9 +100,11 @@ class TransactionController extends AbstractController
             }
         }
         $currency = $em->getRepository(Currency::class)->findAll();
-        return $this->render('transaction/transaction.html.twig', [
+        $transactions = $this->getDoctrine()->getRepository(Transaction::class)->findBy(['Sender' => $this->getUser()->getId()]);
+        return $this->render('transaction/transaction2.html.twig', [
             'currency' => $currency,
-            'error' => $error
+            'error' => $error,
+            'transactions' => $transactions
         ]);
     }
     /**
