@@ -26,6 +26,11 @@ class Direct
      */
     private $Country;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Direct
     public function setCountry(string $Country): self
     {
         $this->Country = $Country;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->Email;
+    }
+
+    public function setEmail(?string $Email): self
+    {
+        $this->Email = $Email;
 
         return $this;
     }

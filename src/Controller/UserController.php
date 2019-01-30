@@ -388,7 +388,7 @@ class UserController extends AbstractController
                 $user->setEnabled(1);
                 $em->flush();
             }
-            return $this->render('user/user_edit.html.twig', [
+            return $this->render('partials/edit_profile.html.twig', [
             ]);
         }
 

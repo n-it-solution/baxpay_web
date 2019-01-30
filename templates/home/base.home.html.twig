@@ -11,16 +11,18 @@
 
     <link href="{{ asset('assets/home/img/brand/icon.png') }}" rel="icon" type="image/png">
     <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {#<link rel="stylesheet" href="{{ asset('assets/home/vendor/font-awesome/css/fontawesome-all.min.css') }}">#}
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/custombox/dist/custombox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/animate.css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/hs-megamenu/src/hs.megamenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/vendor/flatpickr/dist/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/home/css/front.css') }}">
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/bootstrap/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/font-awesome/css/fontawesome-all.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/custombox/dist/custombox.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/animate.css/animate.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/hs-megamenu/src/hs.megamenu.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/vendor/flatpickr/dist/flatpickr.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/home/css/front.css') }}">
+
     {% endblock %}
 
     <style>
@@ -46,42 +48,10 @@
 )) }}
 
 {% block content %}{% endblock %}
-<div class="bottom-footer" style="background:;">
-    <div class="bg-img-footer" style="text-align: center; background: #f8fafd;">
-        <a href="#" class="">
-            <img data-aos="zoom-in-up" src="{{ asset('assets/home/img/brand/footer.png') }}" alt="">
-        </a>
-        {#<div style="background: transparent; text-align: center; padding-top: 30px; ">hello</div>#}
-    </div>
-    <div style="background: #377dff; width: 100%; text-align: center; color: rgba(255, 255, 255, 0.7); font-weight: 400; padding: 40px 0px; font-size: 14px;">
-        © Front. 2018 Htmlstream. All rights reserved.
-    </div>
-</div>
 
-{#
-<!-- Go to Top -->
-<a class="js-go-to u-go-to" href="javascript:;"
-   data-position='{"bottom": 15, "right": 15 }'
-   data-type="fixed"
-   data-offset-top="400"
-   data-compensation="#header"
-   data-show-effect="slideInUp"
-   data-hide-effect="slideOutDown">
-    <span class="fa fa-arrow-up u-go-to__inner"></span>
-</a>
-<!-- End Go to Top -->
-
-<!-- Go to Top -->
-<a class="js-go-to u-go-to" href="#"
-   data-position='{"bottom": 15, "right": 15 }'
-   data-type="fixed"
-   data-offset-top="400"
-   data-compensation="#header"
-   data-show-effect="slideInUp"
-   data-hide-effect="slideOutDown">
-    <span class="fa fa-arrow-up u-go-to__inner"></span>
-</a>
-<!-- End Go to Top -->#}
+{{ render(controller(
+    'App\\Controller\\home\\HomeController::footer'
+)) }}
 
 
 {% block javascripts %}
@@ -92,6 +62,35 @@
 <!-- JS Plugins Init. -->
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/appear.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/circles/circles.min.js"></script>
+
+<!-- JS Front -->
+<script src="{{ asset('') }}assets/home/js/hs.core.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.header.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.unfold.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.malihu-scrollbar.js"></script>
+<script src="{{ asset('') }}assets/home/js/helpers/hs.focus-state.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.validation.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.show-animation.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.range-datepicker.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.chart-pie.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.progress-bar.js"></script>
+<script src="{{ asset('') }}assets/home/js/components/hs.go-to.js"></script>
+<script src="{{ asset('') }}assets/home/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
 <script>
     AOS.init({
         duration:2000,

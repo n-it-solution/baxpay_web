@@ -39,6 +39,17 @@ class TransactionRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function findInReceiverAndSenderWithoutCurrency($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.Receiver = :val')
+            ->orWhere('t.Sender = :val')
+            ->orderBy('t.id', 'DESC')
+            ->setParameters(['val' => $id])
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     public function findByReceiver($id,$currency)
     {

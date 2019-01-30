@@ -59,6 +59,16 @@ class Transaction
      */
     private $Direct;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $attachments;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $dueDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,12 +122,12 @@ class Transaction
         return $this;
     }
 
-    public function getAmount(): ?int
+    public function getAmount(): ?string
     {
         return $this->Amount;
     }
 
-    public function setAmount(int $Amount): self
+    public function setAmount(?string $Amount): self
     {
         $this->Amount = $Amount;
 
@@ -156,6 +166,30 @@ class Transaction
     public function setDirect(?Direct $Direct): self
     {
         $this->Direct = $Direct;
+
+        return $this;
+    }
+
+    public function getAttachments(): ?string
+    {
+        return $this->attachments;
+    }
+
+    public function setAttachments(?string $attachments): self
+    {
+        $this->attachments = $attachments;
+
+        return $this;
+    }
+
+    public function getDueDate(): ?string
+    {
+        return $this->dueDate;
+    }
+
+    public function setDueDate(?string $dueDate): self
+    {
+        $this->dueDate = $dueDate;
 
         return $this;
     }

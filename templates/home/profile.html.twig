@@ -1,0 +1,165 @@
+{% extends 'home/base.home.html.twig' %}
+
+{% trans_default_domain 'homepage' %}
+
+{% block content %}
+
+
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+    <!-- Breadcrumb Section -->
+    <div class="bg-primary">
+        <div class="container u-space-1">
+            <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+                <div class="mb-3 mb-sm-0">
+                    <!-- Breadcrumb -->
+                    <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ path('homepage') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ path('myaccount') }}">Account</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
+                    <!-- End Breadcrumb -->
+                </div>
+
+                <!-- Edit Profile -->
+                <a class="btn btn-sm u-btn-white--air transition-3d-hover" href="{{ path('profile_edit') }}">
+                    <span class="fa fa-user-cog font-size-13 mr-2"></span>
+                    Edit Profile
+                </a>
+                <!-- End Edit Profile -->
+            </div>
+
+        </div>
+    </div>
+    <!-- End Breadcrumb Section -->
+
+    <!-- Content Section -->
+    <div class="u-bg-light-blue-50">
+        <div class="container u-space-2">
+            <div class="row">
+                <div class="col-lg-3 mb-7 mb-lg-0">
+                    <!-- Profile Card -->
+                    <div class="card p-1 mb-4">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <img class="u-xl-avatar rounded-circle" src="{{ asset('') }}assets/home/img/160x160/img2.jpg" alt="Image Description">
+                            </div>
+                            <div class="mb-3">
+                                <span class="d-block font-weight-medium">{{ app.user.firstName }} {{ app.user.lastName }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Profile Card -->
+
+                </div>
+
+                <div class="col-lg-9">
+
+
+                    <!-- Collections -->
+                    <div class="d-sm-flex">
+                        <div class="media align-items-center mb-3 mb-sm-0 mr-5">
+                            <img class="mr-2" src="https://htmlstream.com/preview/front-v1.3/assets/svg/flat-icons/verified-user-flat-concept-illustration.svg" alt="Image Description" style="width: 40px;">
+                            <div class="media-body text-secondary">
+                                Verified
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Collections -->
+
+                    <hr class="my-7" style="margin-top:20px!important;">
+
+                    <!-- Icon Blocks -->
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <!-- List -->
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-4">
+                                    <div class="media">
+                                        <span class="fa fa-user min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body text-lh-sm">
+                                            <span class="d-block font-size-14">First Name:</span>
+                                            <a class="small" href="#">{{ app.user.firstName }}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="mb-4">
+                                    <div class="media">
+                                        <span class="fa fa-user min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body text-lh-sm">
+                                            <span class="d-block font-size-14">Last Name:</span>
+                                            <a class="small" href="#">{{ app.user.lastName }}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-4">
+                                    <div class="media">
+                                        <span class="fa fa-envelope min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body">
+                                            <span class="d-block font-size-14">Email:</span>
+                                            <small class="d-block text-muted">{{ app.user.email }}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="mb-4">
+                                    <div class="media">
+                                        <span class="fa fa-building min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body text-lh-sm">
+                                            <span class="d-block font-size-14">Phone #:</span>
+                                            <a class="small mr-1" href="#">{{ app.user.phoneNumber }}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-4">
+                                    <div class="media">
+                                        <span class="fa fa-globe min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body">
+                                            <span class="d-block font-size-14">Account Type:</span>
+                                            <small class="d-block text-muted">{% if app.user.type == 'p' %}Personal{% else %}Business{% endif %}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="mb-4">
+                                    <div class="media">
+                                        <span class="fa fa-user min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body text-lh-sm">
+                                            <span class="d-block font-size-14">Gender</span>
+                                            <a class="small mr-1" href="#">{% if app.user.gender == 'm' %}Male{% else %}FeMale{% endif %}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {#<li>
+                                    <div class="media">
+                                        <span class="fa fa-tags min-width-6 text-center text-secondary mr-2"></span>
+                                        <div class="media-body text-lh-sm">
+                                            <span class="d-block font-size-14">Skills:</span>
+                                            <a class="small" href="#">HTML5,</a>
+                                            <a class="small" href="#">CSS3,</a>
+                                            <a class="small" href="#">JavaScript,</a>
+                                            <a class="small" href="#">jQuery</a>
+                                        </div>
+                                    </div>
+                                </li>#}
+                            </ul>
+                            <!-- End List -->
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Content Section -->
+</main>
+
+{% endblock %}

@@ -100,7 +100,7 @@ class TransactionController extends AbstractController
             }
         }
         $currency = $em->getRepository(Currency::class)->findAll();
-        $transactions = $this->getDoctrine()->getRepository(Transaction::class)->findBy(['Sender' => $this->getUser()->getId()]);
+        $transactions = $this->getDoctrine()->getRepository(Transaction::class)->findInReceiverAndSenderWithoutCurrency($this->getUser()->getId());
         return $this->render('transaction/transaction2.html.twig', [
             'currency' => $currency,
             'error' => $error,
@@ -163,6 +163,17 @@ class TransactionController extends AbstractController
         ]);
     }
     /**
+     * @Route("/request/received2", name="request_received2")
+     */
+    public function reqReceived2(){
+        $em = $this->getDoctrine()->getManager();
+        $req = $em->getRepository(Transaction::class)->findBy(['Sender' => $this->getUser()->getId(), 'Type' => 3]);
+        return $this->render('transaction/request_reseived.html.twig',[
+            'req' => $req,
+        ]);
+    }
+
+    /**
      * @Route("/request/received", name="request_received")
      */
     public function reqReceived(Request $request,\Swift_Mailer $mailer)
@@ -176,27 +187,18 @@ class TransactionController extends AbstractController
         ]);
     }
     /**
-     * @Route("/request/action2", name="request_action2")
+     * @Route("/request/action", name="request_action")
      */
-    public function reqAction2(){
-        $em = $this->getDoctrine()->getManager();
-        $error = '';
-        $req = $em->getRepository(Transaction::class)->findBy(['Sender' => $this->getUser()->getId(), 'Type' => 3]);
-    }
-    /**
-     * @Route("/request/action/", name="request_action")
-     */
+
     public function reqAction(Request $request,\Swift_Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $msg = '';
         $action = $request->get('action');
-        echo $request->get('id');
         $trans = $em->getRepository(Transaction::class)->find($request->get('id'));
         $trans->getId();
         if (!empty($trans)) {
             if ($trans->getType() == 3) {
-
             if ($trans->getSender()->getId() == $this->getUser()->getId()) {
                 $received = $em->getRepository(Transaction::class)->findByReceiver($this->getUser()->getId(), $trans->getCurrency()->getId());
                 $sended = $em->getRepository(Transaction::class)->findBySender($this->getUser()->getId(), $trans->getCurrency()->getId());
@@ -208,10 +210,14 @@ class TransactionController extends AbstractController
             }
             elseif ($total >= $trans->getAmount()) {
                     if($action == 'accept'){
-                        $trans->setType(2);
+                        if(date('Y/m/d') <= $trans->getDueDate()){
+                            $trans->setType(2);
+                            $msg = 'Record updated';
+                            $em->flush();
+                        }else{
+                            $msg = 'Request expired';
+                        }
                     }
-                    $em->flush();
-                    $msg = 'Record updated';
                 } else {
                     $msg = 'You did not have enough balanced to accept this request';
                 }
@@ -227,7 +233,7 @@ class TransactionController extends AbstractController
         }
 //        $req = $em->getRepository(Transaction::class)->findBy(['Sender' => $this->getUser()->getId(), 'Type' => 3]);
         echo "<script>alert('".$msg."')</script>";
-        return $this->redirectToRoute('request_received');
+        return $this->redirectToRoute('request_received2');
     }
     /**
      * @Route("/direct/send", name="direct_send")
@@ -282,6 +288,39 @@ class TransactionController extends AbstractController
             'currency' => $currency,
             'error' => $error
         ]);
+    }
+
+    /**
+     * @Route("/pay/{id}", name="single_request")
+     */
+    public function singleReq($id){
+
+        $data = $this->getDoctrine()->getRepository(Transaction::class)->find($id);
+        return $this->render('transaction/single_req.html.twig',[
+            'data' => $data
+        ]);
+    }
+    /**
+     * @Route("/pay/action/{id}/{action}", name="single_request_action")
+     */
+    public function singleReqAction($id,$action){
+        $em = $this->getDoctrine()->getManager();
+        $data = $em->getRepository(Transaction::class)->find($id);
+        if($action == 'accept'){
+            if(date('Y/m/d') <= $data->getDueDate()){
+                $data->setType(2);
+                $msg = 'Request completed';
+                $em->flush();
+            }else{
+                $msg = 'Request expired';
+            }
+        }elseif ($action == 'reject'){
+            $data->setType(4);
+            $msg = 'Request Rejected';
+            $em->flush();
+        }
+        echo "<script>alert('".$msg."')</script>";
+        return $this->redirectToRoute('single_request',['id' => $id]);
     }
 
 }

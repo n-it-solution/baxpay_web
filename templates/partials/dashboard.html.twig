@@ -1,21 +1,3 @@
-<link rel="shortcut icon" href="">
-
-<!-- Google Fonts -->
-<link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-
-<!-- CSS Global Compulsory -->
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/bootstrap/css/bootstrap.css">
-
-<!-- CSS Implementing Plugins -->
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/font-awesome/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.css">
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/animate.css/animate.min.css">
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.css">
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.css">
-
-<!-- CSS Front Template -->
-<link rel="stylesheet" href="{{ asset('') }}assets/home/css/front.css">
 
 <!-- ========== MAIN ========== -->
 <main id="content" role="main">
@@ -27,8 +9,8 @@
                     <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
                         <!-- Breadcrumb -->
                         <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="dashboard.html">Account</a></li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ path('homepage') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ path('myaccount') }}">Account</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                         </ol>
                         <!-- End Breadcrumb -->
@@ -199,7 +181,7 @@
 
                                     <!-- Others -->
                                     <li class="nav-item u-header__nav-item">
-                                        <a class="nav-link u-header__nav-link" href="plans.html">Plans</a>
+                                        <a class="nav-link u-header__nav-link" href="{{ path('request_received2') }}">Received Request</a>
                                     </li>
                                     <!-- Others -->
                                 </ul>
@@ -209,6 +191,53 @@
                 </div>
                 <!-- End Navbar -->
 
+                <div class="ml-lg-auto" style="margin:10px">
+                    <!-- Button -->
+                    <button type="button" class="btn btn-sm u-btn-white--air transition-3d-hover" data-toggle="modal" data-target="#exampleModal">
+                        <span class="fa fa-plus font-size-13 mr-2"></span>Make transaction
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Make Transaction</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {#<p>{{ error }}</p>#}
+                                <div class="main-modal" style="width: 90%; margin: 0 auto; ">
+                                    <div style="padding: 15px 0px;"></div>
+                                    <form action="" method="post">
+                                        <input name="form" value="1" type="hidden">
+                                        <label style="margin-bottom: 5px; font-size: 13px;" class="label">Receiver Email</label>
+                                        <input required style="font-size:13px;margin-bottom: 10px;" type="email" class="form-control" name="sender" >
+                                        <label style="margin-bottom: 5px; font-size: 13px;" class="label">Amount</label>
+                                        <input required style="font-size:13px;margin-bottom: 10px;" type="text" class="form-control" name="amount">
+                                        <label style="margin-bottom: 5px; font-size: 13px;" class="label">Currency</label>
+                                        <select required style="font-size: 13px; margin-bottom: 10px;" class="form-control" name="currency">
+                                            {% for c in currency %}
+                                                <option value="{{ c.id }}">{{ c.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <label style="margin-bottom: 5px; font-size: 13px;" class="label">Description</label>
+                                        <textarea style="font-size:13px; height: 100px; margin-bottom: 10px;" name="description" class="form-control" required></textarea>
+                                        <br>
+                                        {#<div class="modal-body">#}
+                                        {#</div>#}
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Button -->
+                </div>
                 <div class="ml-lg-auto">
                     <!-- Button -->
                     <a class="btn btn-sm u-btn-white--air transition-3d-hover" href="#requestPaymentModal"
@@ -236,241 +265,273 @@
             <!-- Card -->
             <div class="card-deck d-block d-lg-flex">
                 <!-- Indicator -->
-                <div class="card">
-                    <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
-                        <!-- Title & Settings -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="h6 mb-0">USD Activity</h4>
-
-                            <!-- Settings Dropdown -->
-                            <div class="position-relative">
-                                <a id="activitySettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
-                                   aria-controls="activitySettingsDropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false"
-                                   data-unfold-event="click"
-                                   data-unfold-target="#activitySettingsDropdown"
-                                   data-unfold-type="css-animation"
-                                   data-unfold-duration="300"
-                                   data-unfold-delay="300"
-                                   data-unfold-hide-on-scroll="true"
-                                   data-unfold-animation-in="slideInUp"
-                                   data-unfold-animation-out="fadeOut">
-                                    <span class="fa fa-ellipsis-h u-icon__inner"></span>
-                                </a>
-
-                                <div id="activitySettingsDropdown" class="u-unfold right-0 text-left mt-2" aria-labelledby="activitySettingsDropdownInvoker" style="min-width: 190px;">
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-eye min-width-3 text-center font-size-13 mr-2"></span>
-                                        Mark as read
-                                    </a>
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-eye-slash min-width-3 text-center font-size-13 mr-2"></span>
-                                        Mark as unread
-                                    </a>
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
-                                        Archive
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Settings Dropdown -->
-                        </div>
-                        <!-- End Title & Settings -->
-
-                        <hr class="mt-3 mb-4">
-
-                        <div class="js-scrollbar pr-3" style="max-height: 300px;">
-                            <!-- Activity Feed -->
-                            <ul class="list-unstyled">
-                                {% for i in usd %}
-                                    {#{{ i.id }}#}
-                                    {% if i.sender.id != app.user.id %}
-                                        <li class="media mb-3">
-                                         <span class="u-icon u-icon-success u-icon--xs rounded-circle mr-3">
-                                            <span class="u-icon__inner">{{ i.amount }}</span>
-                                         </span>
-                                            <div class="media-body">
-                                                <h5 class="font-size-14 mb-1">Add amount</h5>
-                                                <p class="small mb-1">Add new amount from {{ i.sender.firstName }}</p>
-                                                <small class="d-block text-muted">{{ i.date }}</small>
-                                            </div>
-                                        </li>
-                                    {% else %}
-                                        <li class="media mb-3">
-                                         <span class="u-icon u-icon-danger u-icon--xs rounded-circle mr-3">
-                                            <span class="u-icon__inner">{{ i.amount }}</span>
-                                         </span>
-                                        <div class="media-body">
-                                            <h5 class="font-size-14 mb-1">Send amount</h5>
-                                            <p class="small mb-1">Send amount to {{ i.sender.firstName }}</p>
-                                            <small class="d-block text-muted">{{ i.date }}</small>
-                                        </div>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                            <!-- End Activity Feed -->
-                        </div>
-                    </div>
-                </div>
                 <!-- End Indicator -->
                 <!-- Indicator -->
+
                 <div class="card">
-                    <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
-                        <!-- Title & Settings -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="h6 mb-0">EUR Activity</h4>
+                    <div >
+                        <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
+                            <!-- Title & Settings -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="h6 mb-0">Transactions Activities</h4>
 
-                            <!-- Settings Dropdown -->
-                            <div class="position-relative">
-                                <a id="activitySettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
-                                   aria-controls="activitySettingsDropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false"
-                                   data-unfold-event="click"
-                                   data-unfold-target="#activitySettingsDropdown"
-                                   data-unfold-type="css-animation"
-                                   data-unfold-duration="300"
-                                   data-unfold-delay="300"
-                                   data-unfold-hide-on-scroll="true"
-                                   data-unfold-animation-in="slideInUp"
-                                   data-unfold-animation-out="fadeOut">
-                                    <span class="fa fa-ellipsis-h u-icon__inner"></span>
-                                </a>
+                                <!-- Settings Dropdown -->
+                                <div class="position-relative">
+                                    <a id="activitySettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
+                                       aria-controls="activitySettingsDropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false"
+                                       data-unfold-event="click"
+                                       data-unfold-target="#activitySettingsDropdown"
+                                       data-unfold-type="css-animation"
+                                       data-unfold-duration="300"
+                                       data-unfold-delay="300"
+                                       data-unfold-hide-on-scroll="true"
+                                       data-unfold-animation-in="slideInUp"
+                                       data-unfold-animation-out="fadeOut">
+                                        <span class="fa fa-ellipsis-h u-icon__inner"></span>
+                                    </a>
 
-                                <div id="activitySettingsDropdown" class="u-unfold right-0 text-left mt-2" aria-labelledby="activitySettingsDropdownInvoker" style="min-width: 190px;">
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-eye min-width-3 text-center font-size-13 mr-2"></span>
-                                        Mark as read
-                                    </a>
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-eye-slash min-width-3 text-center font-size-13 mr-2"></span>
-                                        Mark as unread
-                                    </a>
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
-                                        Archive
-                                    </a>
+                                    <div id="activitySettingsDropdown" class="u-unfold right-0 text-left mt-2" aria-labelledby="activitySettingsDropdownInvoker" style="min-width: 190px;">
+                                        <a class="u-list__link" href="#">
+                                            <span class="fa fa-eye min-width-3 text-center font-size-13 mr-2"></span>
+                                            Mark as read
+                                        </a>
+                                        <a class="u-list__link" href="#">
+                                            <span class="fa fa-eye-slash min-width-3 text-center font-size-13 mr-2"></span>
+                                            Mark as unread
+                                        </a>
+                                        <a class="u-list__link" href="#">
+                                            <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
+                                            Archive
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- End Settings Dropdown -->
+                            </div>
+                            <!-- End Title & Settings -->
+
+                            <hr class="mt-3 mb-4">
+
+                            <div class="js-scrollbar pr-3">
+                                <div class="table-responsive-md u-datatable">
+                                    <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                                           data-dt-info="#datatableInfo"
+                                           data-dt-search="#datatableSearch"
+                                           data-dt-entries="#datatableEntries"
+                                           data-dt-page-length="12"
+                                           data-dt-is-responsive="false"
+                                           data-dt-is-show-paging="true"
+                                           data-dt-details-invoker=".js-datatabale-details"
+                                           data-dt-select-all-control="#invoiceToggleAllCheckbox"
+
+                                           data-dt-pagination="datatablePagination"
+                                           data-dt-pagination-classes="pagination mb-0"
+                                           data-dt-pagination-items-classes="page-item"
+                                           data-dt-pagination-links-classes="page-link"
+
+                                           data-dt-pagination-next-classes="page-item"
+                                           data-dt-pagination-next-link-classes="page-link"
+                                           data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+
+                                           data-dt-pagination-prev-classes="page-item"
+                                           data-dt-pagination-prev-link-classes="page-link"
+                                           data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
+                                        <thead>
+                                        <tr class="text-uppercase font-size-14">
+                                            <th scope="col">
+                                                <div class="custom-control custom-checkbox d-flex align-items-center">
+                                                    <input type="checkbox" class="custom-control-input" id="invoiceToggleAllCheckbox">
+                                                    <label class="custom-control-label" for="invoiceToggleAllCheckbox">
+                                                        <span class="text-hide">Checkbox</span>
+                                                    </label>
+                                                </div>
+                                            </th>
+                                            <th scope="col" class="font-weight-medium">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    Order
+                                                    <div class="ml-2">
+                                                        <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                                        <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th scope="col" class="font-weight-medium">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    Client
+                                                    <div class="ml-2">
+                                                        <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                                        <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th scope="col" class="font-weight-medium">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    Amount
+                                                    <div class="ml-2">
+                                                        <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                                        <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th scope="col" class="font-weight-medium">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    Status
+                                                    <div class="ml-2">
+                                                        <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                                        <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="font-size-14">
+                                        {% set break = false %}
+                                        {% for i in gbp if not break %}
+                                        {#{{ i.id }}#}
+                                        {% if loop.index == 5 %}
+                                            {% set break = true %}
+                                        {% endif %}
+                                            <tr class="js-datatabale-details" data-details='
+        <div class="border rounded p-5">
+          <h4 class="h3">Invoice</h4>
+
+          <div class="row mb-6">
+            <div class="col-3">
+              <span class="text-secondary">Date:</span>
+              <span class="font-weight-medium">{{ i.date }}</span>
+            </div>
+            <div class="col-3">
+              <span class="text-secondary">Merchant:</span>
+              {% if i.direct %}
+              <span class="font-weight-medium">{{ i.direct.name }}</span>
+              {% elseif i.sender.id == app.user.id %}
+                  <span class="font-weight-medium">{{ i.Receiver.firstName }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.firstName }}</span>
+                  {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+            </div>
+
+            <div class="col-sm-6">
+              <h5 class="text-dark font-size-14 text-uppercase">Client info:</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <span class="text-secondary">First name:</span>
+                  {% if i.direct %}
+                  <span class="font-weight-medium">{{ i.direct.name }}</span>
+                  {% elseif i.sender.id == app.user.id %}
+                  <span class="font-weight-medium">{{ i.Receiver.firstName }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.firstName }}</span>
+                  {% endif %}
+                </li>
+                <li class="mb-2">
+                  <span class="text-secondary">Last name:</span>
+                  {% if i.direct %}
+                  {% elseif i.sender.id == app.user.id %}
+                  <span class="font-weight-medium">{{ i.Receiver.lastName }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.lastName }}</span>
+                  {% endif %}
+                </li>
+                <li class="mb-2">
+                  <span class="text-secondary">Email:</span>
+                  {% if i.direct %}
+                  <span class="font-weight-medium">{{ i.direct.email }}</span>
+                  {% elseif i.sender.id == app.user.id %}
+                  <span class="font-weight-medium">{{ i.Receiver.email }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.email }}</span>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row justify-content-end mb-4">
+            <div class="col-sm-6">
+              <hr class="my-4">
+
+              <h5 class="text-dark font-size-14 text-uppercase">Transaction details:</h5>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-secondary">Transaction amount</span>
+                  <span class="font-weight-medium">{{ i.Amount }} {{ i.Currency.Name }}</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-secondary">Fee</span>
+                  <span class="font-weight-medium">$0.00</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-secondary">Total amount</span>
+                  <span class="text-primary font-weight-medium">{{ i.Amount }} {{ i.Currency.Name }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>'>
+                                                <td class="align-middle">
+                                                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                                                        <input type="checkbox" class="custom-control-input" id="invoiceCheckbox24">
+                                                        <label class="custom-control-label" for="invoiceCheckbox24">
+                                                            <span class="text-hide">Checkbox</span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-secondary font-weight-normal u-datatable__trigger-icon">BAX{{ i.id }}</td>
+                                                <td class="align-middle">
+                                                    <div class="media align-items-center">
+            <span class="u-icon u-icon-dark--air rounded-circle mr-2">
+              <span class="u-icon__inner font-weight-medium">
+                  {% if i.direct %}
+                      <span class="font-weight-medium">{{ i.direct.name|slice(0,1) }}</span>
+              {% elseif i.sender.id == app.user.id %}
+                      {#<span class="font-weight-medium">Baxpay</span>#}
+                      <span class="font-weight-medium">{{ i.Receiver.firstName|slice(0,1) }}</span>
+                  {% else %}
+                      {#<span class="font-weight-medium">Baxpay</span>#}
+                      <span class="font-weight-medium">{{ i.Sender.firstName|slice(0,1) }}</span>
+                  {% endif %}
+              </span>
+            </span>
+                                                        {% if i.direct %}
+                                                            <span>{{ i.direct.name }}</span>
+                                                        {% elseif i.sender.id == app.user.id %}
+                                                            <span>{{ i.Receiver.firstName }}</span>
+                                                        {% else %}
+                                                            <span>{{ i.Sender.firstName }}</span>
+                                                        {% endif %}
+                                                        {#<span>Baxpay</span>#}
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-primary">{{ i.Amount }} {{ i.Currency.Name }}</td>
+                                                {#<td class="align-middle text-secondary">30 Jan</td>#}
+                                                {% if i.direct %}
+                                                    {% if i.type == 2 %}
+                                                        <td class="align-middle text-success">Accepted</td>
+                                                    {% elseif i.type == 3 %}
+                                                        <td class="align-middle" style="color: #ffe03f">Requested</td>
+                                                    {% elseif i.type == 4 %}
+                                                        <td class="align-middle text-danger">Rejected</td>
+                                                    {% else %}
+                                                        <td class="align-middle text-danger">something wrong</td>
+                                                    {% endif %}
+                                                {% elseif i.sender.id == app.user.id %}
+                                                    <td class="align-middle text-danger">Sent</td>
+                                                {% else %}
+                                                    <td class="align-middle text-success">Received</td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <!-- End Settings Dropdown -->
-                        </div>
-                        <!-- End Title & Settings -->
-
-                        <hr class="mt-3 mb-4">
-
-                        <div class="js-scrollbar pr-3" style="max-height: 300px;">
-                            <!-- Activity Feed -->
-                            <ul class="list-unstyled">
-                                {% for i in eur %}
-                                    {#{{ i.id }}#}
-                                    {% if i.sender.id != app.user.id %}
-                                        <li class="media mb-3">
-                                         <span class="u-icon u-icon-success u-icon--xs rounded-circle mr-3">
-                                            <span class="u-icon__inner">{{ i.amount }}</span>
-                                         </span>
-                                            <div class="media-body">
-                                                <h5 class="font-size-14 mb-1">Add amount</h5>
-                                                <p class="small mb-1">Add new amount from {{ i.sender.firstName }}</p>
-                                                <small class="d-block text-muted">{{ i.date }}</small>
-                                            </div>
-                                        </li>
-                                    {% else %}
-                                        <li class="media mb-3">
-                                         <span class="u-icon u-icon-danger u-icon--xs rounded-circle mr-3">
-                                            <span class="u-icon__inner">{{ i.amount }}</span>
-                                         </span>
-                                        <div class="media-body">
-                                            <h5 class="font-size-14 mb-1">Send amount</h5>
-                                            <p class="small mb-1">Send amount to {{ i.sender.firstName }}</p>
-                                            <small class="d-block text-muted">{{ i.date }}</small>
-                                        </div>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                            <!-- End Activity Feed -->
-                        </div>
-                    </div>
-                </div>
-                <!-- End Indicator -->
-                <!-- Indicator -->
-                <div class="card">
-                    <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
-                        <!-- Title & Settings -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="h6 mb-0">GBP Activity</h4>
-
-                            <!-- Settings Dropdown -->
-                            <div class="position-relative">
-                                <a id="activitySettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
-                                   aria-controls="activitySettingsDropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false"
-                                   data-unfold-event="click"
-                                   data-unfold-target="#activitySettingsDropdown"
-                                   data-unfold-type="css-animation"
-                                   data-unfold-duration="300"
-                                   data-unfold-delay="300"
-                                   data-unfold-hide-on-scroll="true"
-                                   data-unfold-animation-in="slideInUp"
-                                   data-unfold-animation-out="fadeOut">
-                                    <span class="fa fa-ellipsis-h u-icon__inner"></span>
-                                </a>
-
-                                <div id="activitySettingsDropdown" class="u-unfold right-0 text-left mt-2" aria-labelledby="activitySettingsDropdownInvoker" style="min-width: 190px;">
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-eye min-width-3 text-center font-size-13 mr-2"></span>
-                                        Mark as read
-                                    </a>
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-eye-slash min-width-3 text-center font-size-13 mr-2"></span>
-                                        Mark as unread
-                                    </a>
-                                    <a class="u-list__link" href="#">
-                                        <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
-                                        Archive
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Settings Dropdown -->
-                        </div>
-                        <!-- End Title & Settings -->
-
-                        <hr class="mt-3 mb-4">
-
-                        <div class="js-scrollbar pr-3" style="max-height: 300px;">
-                            <!-- Activity Feed -->
-                            <ul class="list-unstyled">
-                                {% for i in gbp %}
-                                    {#{{ i.id }}#}
-                                    {% if i.sender.id != app.user.id %}
-                                        <li class="media mb-3">
-                                         <span class="u-icon u-icon-success u-icon--xs rounded-circle mr-3">
-                                            <span class="u-icon__inner">{{ i.amount }}</span>
-                                         </span>
-                                            <div class="media-body">
-                                                <h5 class="font-size-14 mb-1">Add amount</h5>
-                                                <p class="small mb-1">Add new amount from {{ i.sender.firstName }}</p>
-                                                <small class="d-block text-muted">{{ i.date }}</small>
-                                            </div>
-                                        </li>
-                                    {% else %}
-                                        <li class="media mb-3">
-                                         <span class="u-icon u-icon-danger u-icon--xs rounded-circle mr-3">
-                                            <span class="u-icon__inner">{{ i.amount }}</span>
-                                         </span>
-                                        <div class="media-body">
-                                            <h5 class="font-size-14 mb-1">Send amount</h5>
-                                            <p class="small mb-1">Send amount to {{ i.sender.firstName }}</p>
-                                            <small class="d-block text-muted">{{ i.date }}</small>
-                                        </div>
-                                        </li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                            <!-- End Activity Feed -->
                         </div>
                     </div>
                 </div>
@@ -600,7 +661,7 @@
                             <li class="u-sidebar--account__list-item">
                                 <a class="u-sidebar--account__list-link" href="#">
                                     <span class="fa fa-cubes u-sidebar--account__list-icon mr-2"></span>
-                                    Plans
+                                    asdasd
                                 </a>
                             </li>
                         </ul>
@@ -683,11 +744,17 @@
         <hr class="my-0">
 
         <!-- Request Payment Form -->
-        <form class="js-validate js-step-form"
+        <form
+                onsubmit="check(event)"
+                class="js-validate js-step-form"
               data-progress-id="#progressStepForm"
               data-steps-id="#contentStepForm"
-              novalidate="novalidate">
+              novalidate="novalidate"
+                method="post"
+                enctype="multipart/form-data"
+        >
             <!-- Progress Step Form -->
+            <input name="form" value="2" type="hidden">
             <div id="progressStepForm" class="js-step-progress row text-center u-form-steps p-5">
                 <div class="col-sm-4 mb-3 mb-sm-0">
             <span class="d-block u-icon u-icon-primary--air u-icon--lg rounded-circle u-form-steps__icon mx-auto mb-2">
@@ -719,7 +786,7 @@
                     <div id="recentPayersList" data-target-group="idAddNewPayer">
                         <!-- Link -->
                         <div class="d-flex justify-content-end mb-3">
-                            <a class="js-animation-link d-inline-block small u-link-muted" href="javascript:;"
+                            <a class="js-animation-link d-inline-block small u-link-muted newPayer"  href="javascript:;"
                                data-target="#addNewPayer"
                                data-link-group="idAddNewPayer">
                                 <span class="fa fa-plus mr-1"></span>
@@ -737,53 +804,17 @@
                         <!-- Most Recent Payers List -->
                         <div class="mb-4">
                             <!-- Payers List -->
-                            <a class="d-block d-sm-flex align-items-sm-center u-info-v2 rounded p-2 mb-2" href="javascript:;" data-next-step="#paymentDetailsStep">
-                                <div class="media align-items-center">
-                                    <img class="u-avatar rounded-circle mr-3" src="{{ asset('') }}assets/home/img/100x100/img3.jpg" alt="Image Description">
-                                    <div class="media-body">
-                                        <h4 class="h6 mb-0">Sebastian Diaz</h4>
-                                        <small class="d-block text-secondary">sebastiandiaz@gmail.com</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- End Payers List -->
-
-                            <!-- Payers List -->
-                            <a class="d-block d-sm-flex align-items-sm-center u-info-v2 rounded p-2 mb-2" href="javascript:;" data-next-step="#paymentDetailsStep">
-                                <div class="media align-items-center">
-                    <span class="u-icon u-icon-success--air u-icon--md rounded-circle mr-3">
-                      <span class="u-icon__inner">CL</span>
-                    </span>
-                                    <div class="media-body">
-                                        <h4 class="h6 mb-0">Cler Lockhart</h4>
-                                        <small class="d-block text-secondary">clerlockhart@gmail.com</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- End Payers List -->
-
-                            <!-- Payers List -->
-                            <a class="d-block d-sm-flex align-items-sm-center u-info-v2 rounded p-2 mb-2" href="javascript:;" data-next-step="#paymentDetailsStep">
+                            {% for i in payers %}
+                            <a class="d-block d-sm-flex align-items-sm-center u-info-v2 rounded p-2 mb-2 mailId" value="{{ i.email }}" href="javascript:;" data-next-step="#paymentDetailsStep">
                                 <div class="media align-items-center">
                                     <img class="u-avatar rounded-circle mr-3" src="{{ asset('') }}assets/home/img/100x100/img2.jpg" alt="Image Description">
                                     <div class="media-body">
-                                        <h4 class="h6 mb-0">Joseph Mack</h4>
-                                        <small class="d-block text-secondary">josephmack@gmail.com</small>
+                                        <h4 class="h6 mb-0">{{ i.firstName }} {{ i.lastName }}</h4>
+                                        <small class="d-block text-secondary">{{ i.email }}</small>
                                     </div>
                                 </div>
                             </a>
-                            <!-- End Payers List -->
-
-                            <!-- Payers List -->
-                            <a class="d-block d-sm-flex align-items-sm-center u-info-v2 rounded p-2 mb-2" href="javascript:;" data-next-step="#paymentDetailsStep">
-                                <div class="media align-items-center">
-                                    <img class="u-avatar rounded-circle mr-3" src="{{ asset('') }}assets/home/img/100x100/img3.jpg" alt="Image Description">
-                                    <div class="media-body">
-                                        <h4 class="h6 mb-0">Eliza Donovan</h4>
-                                        <small class="d-block text-secondary">eliz@gmail.com</small>
-                                    </div>
-                                </div>
-                            </a>
+                            {% endfor %}
                             <!-- End Payers List -->
                         </div>
                         <!-- End Most Recent Payers List -->
@@ -879,7 +910,7 @@
                                     <label class="h6 small d-block text-uppercase">Email</label>
                                     <div class="js-form-message">
                                         <div class="js-focus-state input-group input-group-sm u-form u-form--sm">
-                                            <input class="form-control u-form__input" type="email" name="emailCompany" required
+                                            <input class="form-control u-form__input emailCompany" type="email" name="emailCompany" required
                                                    placeholder="example@gmail.com"
                                                    aria-label="example@gmail.com"
                                                    data-msg="Please enter a valid email address."
@@ -895,7 +926,7 @@
                                     <label class="h6 small d-block text-uppercase">Country</label>
                                     <div class="js-form-message">
                                         <div class="js-focus-state input-group u-form">
-                                            <select class="custom-select custom-select-sm">
+                                            <select class="custom-select custom-select-sm" name="companyCountry">
                                                 <option selected>Select country</option>
                                                 <option value="AF">Afghanistan</option>
                                                 <option value="AX">Åland Islands</option>
@@ -1195,7 +1226,7 @@
                                     <label class="h6 small d-block text-uppercase">Email</label>
                                     <div class="js-form-message">
                                         <div class="js-focus-state input-group input-group-sm u-form u-form--sm">
-                                            <input class="form-control u-form__input" type="email" name="emailIndividual" required
+                                            <input class="form-control u-form__input emailIndividual" type="email" name="emailIndividual" required
                                                    placeholder="example@gmail.com"
                                                    aria-label="example@gmail.com"
                                                    data-msg="Please enter a valid email address."
@@ -1211,7 +1242,7 @@
                                     <label class="h6 small d-block text-uppercase">Country</label>
                                     <div class="js-form-message">
                                         <div class="js-focus-state input-group u-form">
-                                            <select class="custom-select custom-select-sm">
+                                            <select class="custom-select custom-select-sm" name="indiviatualCountry">
                                                 <option selected>Select country</option>
                                                 <option value="AF">Afghanistan</option>
                                                 <option value="AX">Åland Islands</option>
@@ -1476,7 +1507,7 @@
                     <!-- Buttons -->
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-sm btn-primary u-btn-primary transition-3d-hover mr-1" data-next-step="#paymentDetailsStep">Next</button>
-                        <button type="submit" class="btn btn-sm u-btn-secondary--air transition-3d-hover" onclick="Custombox.modal.close();">Cancel</button>
+                        <button type="button" class="btn btn-sm u-btn-secondary--air transition-3d-hover" onclick="Custombox.modal.close();">Cancel</button>
                     </div>
                     <!-- End Buttons -->
                 </div>
@@ -1488,7 +1519,7 @@
                             <label class="h6 small d-block text-uppercase">Amount</label>
                             <div class="js-form-message">
                                 <div class="js-focus-state input-group input-group-sm u-form u-form--sm">
-                                    <input class="form-control u-form__input" type="number" name="amount" required
+                                    <input class="form-control u-form__input" type="text" name="amount" required
                                            placeholder="Pixeel"
                                            aria-label="Pixeel"
                                            data-msg="Please enter a valid name."
@@ -1504,10 +1535,10 @@
                             <label class="h6 small d-block text-uppercase">Currency</label>
 
                             <div class="js-focus-state input-group u-form">
-                                <select class="custom-select custom-select-sm">
-                                    <option value="usd">USD</option>
-                                    <option value="euro">Euro</option>
-                                    <option value="gbp">GBP</option>
+                                <select name="currency" class="custom-select custom-select-sm">
+                                    {% for c in currency %}
+                                        <option value="{{ c.id }}">{{ c.name }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -1536,7 +1567,12 @@
                         <div id="datepickerWrapper" class="u-datepicker u-datepicker--top input-group input-group-sm u-form u-form--sm">
                             <input class="js-range-datepicker form-control u-form__input bg-transparent border-right-0" type="text" placeholder="Due date" aria-label="Due date"
                                    data-rp-wrapper="#datepickerWrapper"
-                                   data-rp-date-format="d/m/Y">
+                                   data-rp-date-format="Y/m/d" name="date" required
+                                   data-msg="Please enter a valid date."
+                                   data-error-class="u-has-error"
+                                   data-success-class="u-has-success"
+                                   id="date"
+                            >
                             <div class="input-group-append u-form__append">
                   <span class="input-group-text u-form__text rounded-right">
                     <span class="far fa-calendar-alt u-form__text-inner"></span>
@@ -1566,6 +1602,7 @@
                         <small class="d-block text-muted">Maximum file size 10MB</small>
                         <input id="fileAttachmentInput" name="file-attachment" type="file" class="u-file-attachment-input__label">
                     </label>
+                    <input type="hidden" name="mMail" value="no" id="mMail">
                     <!-- End File Attachment Input -->
 
                     <!-- Buttons -->
@@ -1588,73 +1625,33 @@
 <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
 <script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
 <script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/bootstrap/bootstrap.min.js"></script>
-
-<!-- JS Implementing Plugins -->
-<script src="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/appear.js"></script>
-<script src="{{ asset('') }}assets/home/vendor/circles/circles.min.js"></script>
-
-<!-- JS Front -->
-<script src="{{ asset('') }}assets/home/js/hs.core.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.header.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.unfold.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.malihu-scrollbar.js"></script>
-<script src="{{ asset('') }}assets/home/js/helpers/hs.focus-state.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.validation.js"></script>
 <script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
 <script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.show-animation.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.range-datepicker.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.chart-pie.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.progress-bar.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.go-to.js"></script>
-
-{#
-
-    <!-- JS Global Compulsory -->
-    <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>#}{#
-
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>#}{#
-
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/bootstrap/bootstrap.min.js"></script>#}{#
-
-
-    <!-- JS Implementing Plugins -->
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.js"></script>#}{#
-
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>#}{#
-
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/jquery-validation/dist/jquery.validate.min.js"></script>#}{#
-
-    <script src="{{ asset('') }}assets/home/vendor/custombox/dist/custombox.min.js"></script>
-    #}
-{#<script src="{{ asset('') }}assets/home/vendor/flatpickr/dist/flatpickr.min.js"></script>#}{#
-
-    <script src="{{ asset('') }}assets/home/vendor/appear.js"></script>
-    <script src="{{ asset('') }}assets/home/vendor/circles/circles.min.js"></script>
-
-    <script src="{{ asset('') }}assets/home/js/helpers/hs.focus-state.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.validation.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.show-animation.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.range-datepicker.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.chart-pie.js"></script>
-    <script src="{{ asset('') }}assets/home/js/components/hs.progress-bar.js"></script>
-#}
-
+<script>
+    let date = '{{ date }}';
+    function check(e) {
+        if ($('.emailCompany').val() != '' && $('.emailIndividual').val() != ''){
+            alert('please check your form you just have to use Individual or company');
+            e.preventDefault();
+        }else if(date > $('#date').val()){
+            alert('check due date');
+            e.preventDefault();
+        }else if($('.emailCompany').val() == '' && $('.emailIndividual').val() == '' && $('#mMail').val() == 'no'){
+            alert('Atleast add one payer!');
+            e.preventDefault();
+        }
+    }
+    $(document).ready(function () {
+        $('.mailId').click(function () {
+            console.log($(this).attr("value"));
+            let mail = $(this).attr("value");
+            $('#mMail').val(mail)
+        });
+        $('.newPayer').click(function () {
+            $('#mMail').val('no')
+        })
+    })
+</script>
 <script>
     $(window).on('load', function () {
         // initialization of HSMegaMenu component

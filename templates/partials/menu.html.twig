@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Title -->
-    <title> Website Template</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="https://htmlstream.com/preview/front-v1.3/favicon.ico">
-    <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/font-awesome/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/animate.css/animate.min.css">
-        <link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.css">
-        <link rel="stylesheet" href="{{ asset('') }}assets/home/css/front.css">
-    {% endblock %}
-</head>
 
-<body>
-<!-- Skippy -->
-<a id="skippy" class="sr-only sr-only-focusable u-skippy" href="#content">
-    <div class="container">
-        <span class="u-skiplink-text">Skip to main content</span>
-    </div>
-</a>
-<!-- End Skippy -->
 
 <!-- ========== HEADER ========== -->
 <header id="header" class="u-header">
@@ -32,7 +7,7 @@
             <!-- Nav -->
             <nav class="js-mega-menu navbar navbar-expand-md u-header__navbar">
                 <!-- Logo -->
-                <a class="navbar-brand u-header__navbar-brand" href="https://htmlstream.com/preview/front-v1.3/html/home/index.html" aria-label="Front">
+                <a class="navbar-brand u-header__navbar-brand" href="#">
                     <img src="{{ asset('') }}assets/home/img/brand/logo.png" alt="Logo">
                 </a>
                 <!-- End Logo -->
@@ -744,46 +719,3 @@
 </header>
 <!-- ========== END HEADER ========== -->
 
-
-
-
-<!-- JS Global Compulsory -->
-{#
-<script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
-<link rel="stylesheet" href="{{ asset('') }}assets/home/vendor/font-awesome/js/all.js">
-<script src="{{ asset('') }}assets/home//vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
-<script src="{{ asset('') }}assets/home//vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="{{ asset('') }}assets/home//vendor/bootstrap/bootstrap.min.js"></script>
-
-<!-- JS Implementing Plugins -->
-<script src="{{ asset('') }}assets/home/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-
-<!-- JS Front -->
-<script src="{{ asset('') }}assets/home/js/hs.core.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.header.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.unfold.js"></script>
-<script src="{{ asset('') }}assets/home/js/components/hs.go-to.js"></script>
-#}
-
-<!-- JS Plugins Init. -->
-<script>
-    $(window).on('load', function () {
-        // initialization of HSMegaMenu component
-        $('.js-mega-menu').HSMegaMenu({
-            event: 'click',
-            pageContainer: $('.container'),
-            breakpoint: 767,
-            hideTimeOut: 0
-        });
-    });
-
-    $(document).on('ready', function () {
-        // initialization of header
-        $.HSCore.components.HSHeader.init($('#header'));
-
-        // initialization of go to
-        $.HSCore.components.HSGoTo.init('.js-go-to');
-    });
-</script>
-</body>
-</html>

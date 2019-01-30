@@ -1,0 +1,165 @@
+{% extends 'home/base.home.html.twig' %}
+
+{% trans_default_domain 'homepage' %}
+
+{% block head %}
+    <title>{% block title %}{{ 'home.title.home'|trans }}{% endblock %}</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    <!-- ========== MAIN ========== -->
+    <main id="content" role="main">
+        <!-- Content Section -->
+        <div class="u-bg-light-blue-50">
+            <div class="container">
+                <div class="row">
+                    <br>
+                    <br>
+                    <div class="col-md-12" style="padding: 25px 45px;background-color: #fff;margin-top: 25px">
+                        <div style="width: 80%;margin: 0 auto">
+                            {% if data and data.direct  %}
+                            {#{% if data.direct %}#}
+                            <form>
+                                <label class="h6 small d-block text-uppercase" style="margin-top: 20px">Email</label>
+                                <input class="form-control u-form__input" name="email" readonly value="{{ data.receiver.email }}">
+                                <label class="h6 small d-block text-uppercase" style="margin-top: 20px">Name</label>
+                                <input class="form-control u-form__input" name="name" readonly value="{{ data.receiver.firstname }} {{ data.receiver.lastname }}">
+                                <label class="h6 small d-block text-uppercase" style="margin-top: 20px">Request DueDate</label>
+                                <input class="form-control u-form__input" name="dueDate" readonly value="{{ data.dueDate }}">
+                                <label class="h6 small d-block text-uppercase" style="margin-top: 20px">Amount</label>
+                                <input class="form-control u-form__input" name="amount" readonly value="{{ data.amount }} {{ data.currency.name }}">
+                                <label class="h6 small d-block text-uppercase" style="margin-top: 35px"></label>
+                                {% if data.type == 2 %}
+                                <p>Request completed</p>
+                                {% elseif data.type == 4 %}
+                                <p>Request rejected</p>
+                                {% elseif data.type == 3 %}
+                                <a href="{{ path('single_request_action',{id:data.id, action:'reject'}) }}" class="btn btn-sm btn-danger u-btn-danger transition-3d-hover pull-right"  style="margin-left: 10px">
+                                    Reject
+                                </a>
+                                <a href="{{ path('single_request_action',{id:data.id, action:'accept'}) }}" class="btn btn-sm btn-success u-btn-success transition-3d-hover pull-right">
+                                    Accept
+                                </a>
+                                {% else %}
+                                <p>Something wrong</p>
+                                {% endif %}
+                           </form>
+                                {% else %}
+                                <p>Something wrong</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br><br>
+            </div>
+        </div>
+        <!-- End Content Section -->
+    </main>
+    <!-- ========== END MAIN ========== -->
+
+
+    <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
+    <script>
+        function check(e) {
+            if ($('.emailCompany').val() != '' && $('.emailIndividual').val() != ''){
+                alert('please check your form you just have to use Individual or company');
+                e.preventDefault();
+            }else if(date > $('#date').val()){
+                alert('please check due date');
+                e.preventDefault();
+            }
+
+        }
+        $(document).ready(function () {
+            $('.mailId').click(function () {
+                console.log($(this).attr("value"));
+                let mail = $(this).attr("value");
+                $('#mMail').val(mail)
+            });
+            $('.newPayer').click(function () {
+                $('#mMail').val('no')
+            })
+        })
+    </script>
+    <script>
+        $(window).on('load', function () {
+            // initialization of HSMegaMenu component
+            $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 767,
+                hideTimeOut: 0
+            });
+
+            // initialization of HSMegaMenu component
+            $('.js-breadcrumb-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 991,
+                hideTimeOut: 0
+            });
+        });
+
+        $(document).on('ready', function () {
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#header'));
+
+            // initialization of unfold component
+            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+                afterOpen: function () {
+                    $(this).find('input[type="search"]').focus();
+                }
+            });
+
+            // initialization of malihu scrollbar
+            $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+            // initialization of forms
+            $.HSCore.helpers.HSFocusState.init();
+
+            // initialization of form validation
+            $.HSCore.components.HSValidation.init('.js-validate');
+
+            // initialization of autonomous popups
+            $.HSCore.components.HSModalWindow.init('[data-modal-target]', '.js-request-payment-window', {
+                autonomous: true
+            });
+
+            // initialization of step form
+            $.HSCore.components.HSStepForm.init('.js-step-form');
+
+            // initialization of show animations
+            $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+            // initialization of range datepicker
+            $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+            // initialization of chart pies
+            var items = $.HSCore.components.HSChartPie.init('.js-pie');
+
+            // initialization of horizontal progress bars
+            var horizontalProgressBars = $.HSCore.components.HSProgressBar.init('.js-hr-progress', {
+                direction: 'horizontal',
+                indicatorSelector: '.js-hr-progress-bar'
+            });
+
+            var verticalProgressBars = $.HSCore.components.HSProgressBar.init('.js-vr-progress', {
+                direction: 'vertical',
+                indicatorSelector: '.js-vr-progress-bar'
+            });
+
+            // initialization of go to
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+        });
+    </script>
+
+{% endblock %}

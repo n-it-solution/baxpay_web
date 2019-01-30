@@ -1,0 +1,462 @@
+{% extends 'home/base.home.html.twig' %}
+
+{% trans_default_domain 'homepage' %}
+
+{% block head %}
+    <title>{% block title %}{{ 'home.title.home'|trans }}{% endblock %}</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+    <!-- Breadcrumb Section -->
+    <div class="bg-primary">
+        <div class="container u-space-1-top pb-3">
+            <div class="row">
+                <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+                    <div class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+                        <!-- Breadcrumb -->
+                        <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ path('homepage') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ path('myaccount') }}">Account</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit profile</li>
+                        </ol>
+                        <!-- End Breadcrumb -->
+
+                        <!-- Breadcrumb Nav Toggle Button -->
+                        <div class="d-lg-none">
+                            <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                                    aria-label="Toggle navigation"
+                                    aria-expanded="false"
+                                    aria-controls="breadcrumbNavBar"
+                                    data-toggle="collapse"
+                                    data-target="#breadcrumbNavBar">
+                  <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                    <span class="u-hamburger__inner"></span>
+                  </span>
+                            </button>
+                        </div>
+                        <!-- End Breadcrumb Nav Toggle Button -->
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-1">
+                    <!-- User Info -->
+                    <div class="media d-block d-sm-flex align-items-sm-center">
+                        <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+                            <img class="u-lg-avatar rounded-circle" src="{{ asset('') }}assets/home/img/160x160/img2.jpg" alt="Image Description">
+                            <span class="u-badge u-badge-border-success u-badge--md u-badge-pos--bottom-right-0 rounded-circle">
+                  <span class="fa fa-check"></span>
+                </span>
+                        </div>
+                        <div class="media-body">
+                            <h1 class="h3 text-white font-weight-medium mb-1">{{ app.user.firstName }}, {{ app.user.lastName }}!</h1>
+                            <span class="d-block text-white">{{ app.user.email }}</span>
+                        </div>
+                    </div>
+                    <!-- End User Info -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container u-space-1-bottom u-space-bottom-0--lg">
+            <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+                <!-- Navbar -->
+                <div class="u-header u-header--bg-transparent-lg z-index-4">
+                    <div class="u-header__section bg-transparent u-header--white-nav-links">
+                        <nav class="js-breadcrumb-menu navbar navbar-expand-lg u-header__navbar">
+                            <div id="breadcrumbNavBar" class="collapse navbar-collapse py-0">
+                                <ul class="navbar-nav w-100 u-header__navbar-nav">
+                                    <!-- General -->
+                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                                        data-event="hover"
+                                        data-animation-in="slideInUp"
+                                        data-animation-out="fadeOut">
+                                        <a id="generalDropdown" class="nav-link u-header__nav-link pl-0" href="javascript:;"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           aria-labelledby="generalDropdown">
+                                            General
+                                            <span class="fa fa-angle-down u-header__nav-link-icon"></span>
+                                        </a>
+
+                                        <!-- Submenu -->
+                                        <ul id="generalDropdown" class="list-inline hs-sub-menu u-header__sub-menu py-lg-3 mb-0" style="min-width: 220px;"
+                                            aria-labelledby="generalDropdown">
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="dashboard.html">Dashboard</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="profile.html">Profile</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="my-tasks.html">My tasks</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="projects.html">Projects</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="members.html">Members</a>
+                                            </li>
+                                        </ul>
+                                        <!-- End Submenu -->
+                                    </li>
+                                    <!-- General -->
+
+                                    <!-- Account Settings -->
+                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                                        data-event="hover"
+                                        data-animation-in="slideInUp"
+                                        data-animation-out="fadeOut">
+                                        <a id="accountSettingsDropdown" class="nav-link u-header__nav-link" href="javascript:;"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           aria-labelledby="accountSettingsDropdown">
+                                            Account settings
+                                            <span class="fa fa-angle-down u-header__nav-link-icon"></span>
+                                        </a>
+
+                                        <!-- Submenu -->
+                                        <ul id="accountSettingsDropdown" class="list-inline hs-sub-menu u-header__sub-menu py-lg-3 mb-0" style="min-width: 220px;"
+                                            aria-labelledby="accountSettingsDropdown">
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="edit-profile.html">Edit profile</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="change-password.html">Change password</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="notifications.html">Notifications</a>
+                                            </li>
+                                        </ul>
+                                        <!-- End Submenu -->
+                                    </li>
+                                    <!-- Account Settings -->
+
+                                    <!-- Billing -->
+                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                                        data-event="hover"
+                                        data-animation-in="slideInUp"
+                                        data-animation-out="fadeOut">
+                                        <a id="billingDropdown" class="nav-link u-header__nav-link" href="javascript:;"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           aria-labelledby="billingDropdown">
+                                            Billing
+                                            <span class="fa fa-angle-down u-header__nav-link-icon"></span>
+                                        </a>
+
+                                        <!-- Submenu -->
+                                        <ul id="billingDropdown" class="list-inline hs-sub-menu u-header__sub-menu py-lg-3 mb-0" style="min-width: 220px;"
+                                            aria-labelledby="billingDropdown">
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="activity.html">Activity</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="payment-methods.html">Payment methods</a>
+                                            </li>
+                                        </ul>
+                                        <!-- End Submenu -->
+                                    </li>
+                                    <!-- Billing -->
+
+                                    <!-- Accessibility -->
+                                    <li class="nav-item hs-has-sub-menu u-header__nav-item"
+                                        data-event="hover"
+                                        data-animation-in="slideInUp"
+                                        data-animation-out="fadeOut">
+                                        <a id="accessibilityDropdown" class="nav-link u-header__nav-link" href="javascript:;"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           aria-labelledby="accessibilityDropdown">
+                                            Accessibility
+                                            <span class="fa fa-angle-down u-header__nav-link-icon"></span>
+                                        </a>
+
+                                        <!-- Submenu -->
+                                        <ul id="accessibilityDropdown" class="list-inline hs-sub-menu u-header__sub-menu py-lg-3 mb-0" style="min-width: 220px;"
+                                            aria-labelledby="accessibilityDropdown">
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="invite-friends.html">Invite friends</a>
+                                            </li>
+                                            <li class="dropdown-item px-0">
+                                                <a class="nav-link u-header__sub-menu-nav-link u-list__link px-4" href="api-token.html">API Token</a>
+                                            </li>
+                                        </ul>
+                                        <!-- End Submenu -->
+                                    </li>
+                                    <!-- Accessibility -->
+
+                                    <!-- Others -->
+                                    <li class="nav-item u-header__nav-item">
+                                        <a class="nav-link u-header__nav-link" href="plans.html">Plans</a>
+                                    </li>
+                                    <!-- Others -->
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- End Navbar -->
+
+                <div class="ml-lg-auto">
+                    <!-- Button -->
+                    <a class="btn btn-sm u-btn-white--air transition-3d-hover" href="{{ path('user_view_profile') }}">View My Profile</a>
+                    <!-- End Button -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Section -->
+
+    <!-- Content Section -->
+    <div class="u-bg-light-blue-50">
+        <div class="container u-space-2">
+            <!-- Personal Info Form -->
+            <form class="js-validate" method="post">
+                <div class="row">
+                    <!-- Input -->
+                    <div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                First Name
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <input class="form-control u-form__input" type="text" name="fName" value="{{ app.user.firstname }}" required
+                                       placeholder="Enter your name"
+                                       aria-label="Enter your name"
+                                       data-msg="Please enter your name."
+                                       data-error-class="u-has-error"
+                                       data-success-class="u-has-success">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Input -->
+
+                    <!-- Input -->
+                    <div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                Last Name
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <input class="form-control u-form__input" type="text" name="lName" value="{{ app.user.lastname }}" required
+                                       placeholder="Enter your username"
+                                       aria-label="Enter your username"
+                                       data-msg="Please enter your username."
+                                       data-error-class="u-has-error"
+                                       data-success-class="u-has-success">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+
+                <div class="row">
+                    <!-- Input -->
+                    <div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                Email
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <input class="form-control u-form__input" type="email" name="email" value="{{ app.user.email }}" required
+                                       placeholder="Enter your email address"
+                                       aria-label="Enter your email address"
+                                       data-msg="Please enter a valid email address."
+                                       data-error-class="u-has-error"
+                                       data-success-class="u-has-success">
+                            </div>
+                        </div>
+                        {#<p class="small mb-0">We'll never share your email with anyone else.</p>#}
+                    </div>
+                    <!-- End Input -->
+
+                    <!-- Input -->
+                    <div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                Phone Number, Example(+1-541-754-3010)
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <input class="form-control u-form__input" type="tel" name="pNumber" value="{{ app.user.phonenumber }}" required
+                                       placeholder="Enter your phone number"
+                                       aria-label="Enter your phone number"
+                                       data-msg="Please enter a valid phone number"
+                                       data-error-class="u-has-error"
+                                       data-success-class="u-has-success">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+                <div class="row">
+                    <!-- Input -->
+                    <div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                Male
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <select class="custom-select mb-2" required name="gender">
+                                    <option value="m" {% if app.user.gender == 'm' %}selected{% endif %}>Male</option>
+                                    <option value="f" {% if app.user.gender == 'f' %}selected{% endif %}>Female</option>
+                                </select>
+                                {#Male<input type="radio" {% if app.user.gender == 'm' %}checked="checked"  {% endif %} name="gender" required value="m">#}
+                                {#Female<input type="radio" {% if app.user.gender == 'f' %}checked="checked"  {% endif %}  name="gender" required value="f">#}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Input -->
+
+                    <!-- Input -->
+                    <div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                Account Type
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <select class="custom-select mb-2" required name="type">
+                                    <option value="b" {% if app.user.type == 'b' %}selected{% endif %}>Business</option>
+                                    <option value="p" {% if app.user.type == 'p' %}selected{% endif %}>Personal</option>
+                                </select>
+                            </div>
+                        </div>
+                        {#<p class="small mb-0">Your home page, blog or company site, e.g. http://example.com</p>#}
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+                <div class="row">
+                    <!-- Input -->
+                    {#<div class="col-sm-6 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                Phone Number, Example(+1-541-754-3010)
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <div class="js-focus-state input-group u-form mb-2">
+                                <input class="form-control u-form__input" type="tel" name="pNumber" value="{{ app.user.phonenumber }}" required
+                                       placeholder="Enter your phone number"
+                                       aria-label="Enter your phone number"
+                                       data-msg="Please enter a valid phone number"
+                                       data-error-class="u-has-error"
+                                       data-success-class="u-has-success">
+                            </div>
+                        </div>
+                    </div>#}
+                    <!-- End Input -->
+
+                    <!-- Input -->
+                    <div class="col-sm-6 offset-3 mb-6">
+                        <div class="js-form-message">
+                            <label class="d-block small text-uppercase font-weight-medium">
+                                <span class="text-danger">&nbsp;</span>
+                            </label>
+
+                            <input class="btn btn-primary form-control" type="submit" value="Update Profile">
+                        </div>
+                    </div>
+                    <!-- End Input -->
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+
+    <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+
+    <script>
+        $(window).on('load', function () {
+            // initialization of HSMegaMenu component
+            $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 767,
+                hideTimeOut: 0
+            });
+
+            // initialization of HSMegaMenu component
+            $('.js-breadcrumb-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 991,
+                hideTimeOut: 0
+            });
+        });
+
+        $(document).on('ready', function () {
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#header'));
+
+            // initialization of unfold component
+            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+                afterOpen: function () {
+                    $(this).find('input[type="search"]').focus();
+                }
+            });
+
+            // initialization of malihu scrollbar
+            $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+            // initialization of forms
+            $.HSCore.helpers.HSFocusState.init();
+
+            // initialization of form validation
+            $.HSCore.components.HSValidation.init('.js-validate');
+
+            // initialization of autonomous popups
+            $.HSCore.components.HSModalWindow.init('[data-modal-target]', '.js-request-payment-window', {
+                autonomous: true
+            });
+
+            // initialization of step form
+            $.HSCore.components.HSStepForm.init('.js-step-form');
+
+            // initialization of show animations
+            $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+            // initialization of range datepicker
+            $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+            // initialization of chart pies
+            var items = $.HSCore.components.HSChartPie.init('.js-pie');
+
+            // initialization of horizontal progress bars
+            var horizontalProgressBars = $.HSCore.components.HSProgressBar.init('.js-hr-progress', {
+                direction: 'horizontal',
+                indicatorSelector: '.js-hr-progress-bar'
+            });
+
+            var verticalProgressBars = $.HSCore.components.HSProgressBar.init('.js-vr-progress', {
+                direction: 'vertical',
+                indicatorSelector: '.js-vr-progress-bar'
+            });
+
+            // initialization of go to
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends 'home/base.home.html.twig' %}
+
+{% trans_default_domain 'homepage' %}
+
+{% block head %}
+    <title>{% block title %}{{ 'home.title.home'|trans }}{% endblock %}</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    <!-- ========== MAIN ========== -->
+    <main id="content" role="main">
+        <!-- Content Section -->
+        <div class="u-bg-light-blue-50">
+            <br><br><br>
+            <div class="container" style="background-color: #fff;padding: 25px 25px">
+                <div style="height: 400px;overflow: scroll;width: 100%">
+                    <!-- Transaction Table -->
+                    <div class="table-responsive-md u-datatable">
+                        <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content mb-5"
+                               data-dt-info="#datatableInfo"
+                               data-dt-search="#datatableSearch"
+                               data-dt-entries="#datatableEntries"
+                               data-dt-page-length="12"
+                               data-dt-is-responsive="false"
+                               data-dt-is-show-paging="true"
+
+                               data-dt-pagination="datatablePagination"
+                               data-dt-pagination-classes="pagination mb-0"
+                               data-dt-pagination-items-classes="page-item"
+                               data-dt-pagination-links-classes="page-link"
+
+                               data-dt-pagination-next-classes="page-item"
+                               data-dt-pagination-next-link-classes="page-link"
+                               data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+
+                               data-dt-pagination-prev-classes="page-item"
+                               data-dt-pagination-prev-link-classes="page-link"
+                               data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
+                            <thead>
+                            <tr class="text-uppercase font-size-14">
+                                <th scope="col" class="font-weight-medium">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        ID#
+                                        <div class="ml-2">
+                                            <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                            <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="font-weight-medium">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        Requester Name
+                                        <div class="ml-2">
+                                            <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                            <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="font-weight-medium">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        Requester Email
+                                        <div class="ml-2">
+                                            <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                            <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="font-weight-medium">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        Amount
+                                        <div class="ml-2">
+                                            <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                            <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="font-weight-medium">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        Due data
+                                        <div class="ml-2">
+                                            <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                            <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="font-weight-medium">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        Action
+                                        <div class="ml-2">
+                                            <span class="fa fa-angle-up u-datatable__thead-icon"></span>
+                                            <span class="fa fa-angle-down u-datatable__thead-icon"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="font-size-14">
+                            {% for r in req %}
+                                {#<tr>#}
+                                {#<td>{{ loop.index }}</td>#}
+                                {#<td>{{ r.receiver.firstname }} {{ r.receiver.lastname }}</td>#}
+                                {#<td>{{ r.receiver.email }}</td>#}
+                                {#<td>{{ r.amount }}</td>#}
+                                {#<td>{{ r.currency.name }}</td>#}
+                                {#<td>{{ r.date }}</td>#}
+                                {#<td>#}
+                                {#<a href="{{ path('request_action',{action:'accept', id:r.id}) }}"><button class="btn btn-success">Accept</button></a>#}
+                                {#<a href="{{ path('request_action',{action:'reject', id:r.id}) }}"><button class="btn btn-danger">Reject</button></a>#}
+                                {#</td>#}
+                                {#</tr>#}
+                                <tr>
+                                    <td class="align-middle font-weight-normal">{{ loop.index }}</td>
+                                    <td class="align-middle font-weight-normal">{{ r.receiver.firstname }} {{ r.receiver.lastname }}</td>
+                                    <td class="align-middle">{{ r.receiver.email }}</td>
+                                    <td class="align-middle">
+                                        {{ r.amount }} {{ r.currency.name }}
+                                    </td>
+                                    <td class="align-middle">
+                                        {% if r.dueDate %}
+                                            {{ r.dueDate }}
+                                        {% else %}
+                                            null
+                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="{{ path('request_action',{action:'accept', id:r.id}) }}"><button class="btn btn-success btn-xs">Accept</button></a>
+                                        <a href="{{ path('request_action',{action:'reject', id:r.id}) }}"><button class="btn btn-danger btn-xs">Reject</button></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- End Transaction Table -->
+                </div>
+            </div>
+            <br><br>
+        </div>
+        <!-- End Content Section -->
+    </main>
+    <!-- ========== END MAIN ========== -->
+
+
+    <script src="{{ asset('') }}assets/home/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('') }}assets/home/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="{{ asset('') }}assets/home/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.modal-window.js"></script>
+    <script src="{{ asset('') }}assets/home/js/components/hs.step-form.js"></script>
+    <script>
+        function check(e) {
+            if ($('.emailCompany').val() != '' && $('.emailIndividual').val() != ''){
+                alert('please check your form you just have to use Individual or company');
+                e.preventDefault();
+            }else if(date > $('#date').val()){
+                alert('please check due date');
+                e.preventDefault();
+            }
+
+        }
+        $(document).ready(function () {
+            $('.mailId').click(function () {
+                console.log($(this).attr("value"));
+                let mail = $(this).attr("value");
+                $('#mMail').val(mail)
+            });
+            $('.newPayer').click(function () {
+                $('#mMail').val('no')
+            })
+        })
+    </script>
+    <script>
+        $(window).on('load', function () {
+            // initialization of HSMegaMenu component
+            $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 767,
+                hideTimeOut: 0
+            });
+
+            // initialization of HSMegaMenu component
+            $('.js-breadcrumb-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 991,
+                hideTimeOut: 0
+            });
+        });
+
+        $(document).on('ready', function () {
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#header'));
+
+            // initialization of unfold component
+            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+                afterOpen: function () {
+                    $(this).find('input[type="search"]').focus();
+                }
+            });
+
+            // initialization of malihu scrollbar
+            $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+            // initialization of forms
+            $.HSCore.helpers.HSFocusState.init();
+
+            // initialization of form validation
+            $.HSCore.components.HSValidation.init('.js-validate');
+
+            // initialization of autonomous popups
+            $.HSCore.components.HSModalWindow.init('[data-modal-target]', '.js-request-payment-window', {
+                autonomous: true
+            });
+
+            // initialization of step form
+            $.HSCore.components.HSStepForm.init('.js-step-form');
+
+            // initialization of show animations
+            $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+            // initialization of range datepicker
+            $.HSCore.components.HSRangeDatepicker.init('.js-range-datepicker');
+
+            // initialization of chart pies
+            var items = $.HSCore.components.HSChartPie.init('.js-pie');
+
+            // initialization of horizontal progress bars
+            var horizontalProgressBars = $.HSCore.components.HSProgressBar.init('.js-hr-progress', {
+                direction: 'horizontal',
+                indicatorSelector: '.js-hr-progress-bar'
+            });
+
+            var verticalProgressBars = $.HSCore.components.HSProgressBar.init('.js-vr-progress', {
+                direction: 'vertical',
+                indicatorSelector: '.js-vr-progress-bar'
+            });
+
+            // initialization of go to
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+        });
+    </script>
+
+{% endblock %}

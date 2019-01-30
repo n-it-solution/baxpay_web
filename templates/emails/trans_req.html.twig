@@ -1,3 +1,8 @@
 <h2>Hello {{ receiver }}!</h2>
+{% if link == '0' %}
 <h4>
-    You received a {{ amount }} {{ currency }} transaction request from {{ name }} login to site to confirm and reject this request.</h4>
+    You received a {{ amount }} {{ currency }} transaction request from {{ name }} login to site to confirm and reject this request.
+</h4>
+{% else %}
+You received a {{ amount }} {{ currency }} transaction request from {{ name }} follow this <a href="{{ link }}" target="_blank">link</a> to confirm and reject this request.
+{% endif %}

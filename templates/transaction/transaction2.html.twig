@@ -6,7 +6,6 @@
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link href="{{ asset('assets/home/img/brand/icon.png') }}" rel="icon" type="image/png">
     <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -66,26 +65,26 @@
 <main id="content" role="main">
     <!-- Breadcrumb Section -->
     <!-- End Breadcrumb Section -->
-    <div class="col-md-4 offset-4">
-        <h4 class="text-danger">{{ error }}</h4>
-        <h2 class="text-success">Make a transaction</h2>
-        <form action="" method="post">
-            <label class="label">Receiver username</label>
-            <input required type="text" class="form-control" name="sender">
-            <label class="label">Amount</label>
-            <input required type="number" class="form-control" name="amount">
-            <label class="label">Currency</label>
-            <select required class="form-control" name="currency">
-                {% for c in currency %}
-                    <option value="{{ c.id }}">{{ c.name }}</option>
-                {% endfor %}
-            </select>
-            <label class="label">Description</label>
-            <textarea name="description" class="form-control" required></textarea>
-            <br>
-            <input type="submit" class="pull-right btn btn-primary">
-        </form>
-    </div>
+    {#<div class="col-md-4 offset-4">#}
+        {#<h4 class="text-danger">{{ error }}</h4>#}
+        {#<h2 class="text-success">Make a transaction</h2>#}
+        {#<form action="" method="post">#}
+            {#<label class="label">Receiver username</label>#}
+            {#<input required type="text" class="form-control" name="sender">#}
+            {#<label class="label">Amount</label>#}
+            {#<input required type="number" class="form-control" name="amount">#}
+            {#<label class="label">Currency</label>#}
+            {#<select required class="form-control" name="currency">#}
+                {#{% for c in currency %}#}
+                    {#<option value="{{ c.id }}">{{ c.name }}</option>#}
+                {#{% endfor %}#}
+            {#</select>#}
+            {#<label class="label">Description</label>#}
+            {#<textarea name="description" class="form-control" required></textarea>#}
+            {#<br>#}
+            {#<input type="submit" class="pull-right btn btn-primary">#}
+        {#</form>#}
+    {#</div>#}
     <!-- Content Section -->
     <div class="u-bg-light-blue-50">
         <div class="container u-space-2">
@@ -224,7 +223,13 @@
             </div>
             <div class="col-3">
               <span class="text-secondary">Merchant:</span>
-              <span class="font-weight-medium">Baxpay</span>
+              {% if i.direct %}
+              <span class="font-weight-medium">{{ i.direct.name }}</span>
+              {% elseif i.sender.id == app.user.id %}
+                  <span class="font-weight-medium">{{ i.Receiver.firstName }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.firstName }}</span>
+                  {% endif %}
             </div>
           </div>
 
@@ -237,15 +242,32 @@
               <ul class="list-unstyled mb-0">
                 <li class="mb-2">
                   <span class="text-secondary">First name:</span>
+                  {% if i.direct %}
+                  <span class="font-weight-medium">{{ i.direct.name }}</span>
+                  {% elseif i.sender.id == app.user.id %}
                   <span class="font-weight-medium">{{ i.Receiver.firstName }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.firstName }}</span>
+                  {% endif %}
                 </li>
                 <li class="mb-2">
                   <span class="text-secondary">Last name:</span>
+                  {% if i.direct %}
+                  {% elseif i.sender.id == app.user.id %}
                   <span class="font-weight-medium">{{ i.Receiver.lastName }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.lastName }}</span>
+                  {% endif %}
                 </li>
                 <li class="mb-2">
                   <span class="text-secondary">Email:</span>
+                  {% if i.direct %}
+                  <span class="font-weight-medium">{{ i.direct.email }}</span>
+                  {% elseif i.sender.id == app.user.id %}
                   <span class="font-weight-medium">{{ i.Receiver.email }}</span>
+                  {% else %}
+                  <span class="font-weight-medium">{{ i.Sender.email }}</span>
+                  {% endif %}
                 </li>
               </ul>
             </div>
@@ -285,14 +307,45 @@
                         <td class="align-middle">
                             <div class="media align-items-center">
             <span class="u-icon u-icon-dark--air rounded-circle mr-2">
-              <span class="u-icon__inner font-weight-medium">B</span>
+              <span class="u-icon__inner font-weight-medium">
+                  {% if i.direct %}
+                      <span class="font-weight-medium">{{ i.direct.name|slice(0,1) }}</span>
+              {% elseif i.sender.id == app.user.id %}
+                  {#<span class="font-weight-medium">Baxpay</span>#}
+                  <span class="font-weight-medium">{{ i.Receiver.firstName|slice(0,1) }}</span>
+                  {% else %}
+                  {#<span class="font-weight-medium">Baxpay</span>#}
+                  <span class="font-weight-medium">{{ i.Sender.firstName|slice(0,1) }}</span>
+              {% endif %}
+              </span>
             </span>
-                                <span>Baxpay</span>
+                                {% if i.direct %}
+                                    <span>{{ i.direct.name }}</span>
+                                {% elseif i.sender.id == app.user.id %}
+                                    <span>{{ i.Receiver.firstName }}</span>
+                                {% else %}
+                                    <span>{{ i.Sender.firstName }}</span>
+                                {% endif %}
+                                {#<span>Baxpay</span>#}
                             </div>
                         </td>
                         <td class="align-middle text-primary">{{ i.Amount }} {{ i.Currency.Name }}</td>
                         {#<td class="align-middle text-secondary">30 Jan</td>#}
-                        <td class="align-middle text-success">Completed</td>
+                        {% if i.direct %}
+                            {% if i.type == 2 %}
+                                <td class="align-middle text-success">Accepted</td>
+                                {% elseif i.type == 3 %}
+                                    <td class="align-middle" style="color: #ffe03f">Requested</td>
+                                {% elseif i.type == 4 %}
+                                    <td class="align-middle text-danger">Rejected</td>
+                                {% else %}
+                                    <td class="align-middle text-danger">something wrong</td>
+                            {% endif %}
+                        {% elseif i.sender.id == app.user.id %}
+                        <td class="align-middle text-danger">Sent</td>
+                        {% else %}
+                        <td class="align-middle text-success">Received</td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -661,17 +714,10 @@
         $.HSCore.components.HSGoTo.init('.js-go-to');
     });
 </script>
-<div class="bottom-footer">
-    <div class="bg-img-footer" style="text-align: center; background: #f8fafd;">
-        <a href="#" class="">
-            <img data-aos="zoom-in-up" src="{{ asset('assets/home/img/brand/footer.png') }}" alt="">
-        </a>
-        {#<div style="background: transparent; text-align: center; padding-top: 30px; ">hello</div>#}
-    </div>
-    <div style="background: #377dff; width: 100%; text-align: center; color: rgba(255, 255, 255, 0.7); font-weight: 400; padding: 40px 0px; font-size: 14px;">
-        © Front. 2018 Htmlstream. All rights reserved.
-    </div>
-</div>
+{{ render(controller(
+    'App\\Controller\\home\\HomeController::footer'
+)) }}
+
 
 
 <!-- JS Plugins Init. -->
